@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../js/jquery-3.7.1.js"></script>
+    <script>
+      $(document).ready(function () {
+        setTimeout(function () {
+          const imagepath = $("input:radio:checked").val();
+          alert("선택한 그림의 위치는 '" + imagepath + "' 입니다.");
+          $("img").attr("src", imagepath);
+        }, 5000);
+      });
+    </script>
+  </head>
+  <body>
+    <h3>선택한 그림 위치 출력</h3>
+    <hr />
+    <div>radio 버튼을 클릭하세요</div>
+    <form action="">
+      <img src="../image/desert.jpg" width="100px" height="100px" /><br />
+      <input type="radio" name="icon" value="../image/desert.jpg" />image1<br />
+      <input type="radio" name="icon" value="../image/koala.jpg" />image2<br />
+      <input type="radio" name="icon" value="../image/hamburger.png" />image3<br />
+    </form>
+  </body>
+</html>

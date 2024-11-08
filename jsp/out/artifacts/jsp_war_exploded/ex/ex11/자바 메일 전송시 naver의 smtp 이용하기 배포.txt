@@ -1,0 +1,29 @@
+1. SMTP(Simple Mail Transfer Protocol)이란
+   메일을 전송할 수 있도록 해주는 프로토콜을 의미합니다.
+   이메일을 송수신하는 서버를 SMTP서버라고 하며 네이버와 구글에서 계정에 대한 SMTP를 제공해줍니다.
+
+2. 라이브러리 다운로드 받기
+   (1) 구글에서 mail-1.4.7.jar로 검색
+       https://mvnrepository.com/artifact/javax.mail/mail/1.4.7
+
+   (2) 구글에서 activation-1.1.jar로 검색
+       https://mvnrepository.com/artifact/javax.activation/activation/1.1
+
+3. SMTP 서버를 naver에서 지정하겠습니다.
+   1) http://www.naver.com 접속
+   2) 아이디와 비밀번호 입력 후 로그인
+   3) 메일 선택
+   4) 환경설정 클릭
+   5) POP3/IMAP설정 선택
+   6) POP3/SMTP 설정탭에서
+      POP3/SMTP 사용 : 사용함 선택
+      원본 저장 : 네이버 메일을 원본 저장 선택
+   7) IMAP/SMTP 설정탭에서
+      IMAP/SMTP 사용 : 사용함 선택
+
+   8) 저장
+
+      port번호는 587
+      SMTP 서버명 : smtp.naver.com
+
+4. 2차 인증 설정 해제해 주세요

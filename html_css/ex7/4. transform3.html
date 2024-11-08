@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- translate() 함수는 요소를 수평(x축) 및 수직(y축) 방향으로 이동시킵니다.
+         translateX() 함수는 요소를 X축 방향(수평 방향) 으로 이동시킵니다.-->
+    <style>
+      div {
+        display: inline-block;
+        padding: 5px;
+        color: white;
+        background-color: olivedrab;
+      }
+
+      div#translate:hover {
+        /* 태그를 x축으로 100px 만큼 이동 */
+        transform: translateX(100px);
+      }
+    </style>
+  </head>
+  <body>
+    <h3>다양한 Transform</h3>
+    아래는 이동(translate)이 적용됩니다. 또한 마우스를 올리면 추가적 변환이 일어납니다.
+    <hr />
+    <div id="translate">translateX(100px)</div>
+  </body>
+</html>

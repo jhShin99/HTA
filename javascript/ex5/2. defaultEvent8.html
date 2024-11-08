@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>a 태그 디폴트 이벤트 제거하기</title>
+  </head>
+  <body>
+    <input id="hoho" type="text" />
+    <br />
+    <a href="http://www.naver.com" onclick="return go();">입력상자에 "하하"를 입력 후 클릭하면 네이버로 이동 안돼요~</a>
+    <script>
+      function go() {
+        var inputData = document.getElementById("hoho");
+        if (inputData.value == "하하") {
+          alert("이동할 수 없습니다");
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>

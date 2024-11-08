@@ -1,0 +1,11 @@
+set sqlprompt '_user>'
+set linesize 200
+set pagesize 40
+col ename format a10
+col job format a10
+col OWNER format a10
+COL SEARCH_CONDITION FORMAT A15
+COL R_CONSTRAINT_NAME FORMAT A15
+COL CONSTRAINT_NAME FORMAT A15
+COL TABLE_NAME FORMAT A15
+COL COLUMN_NAME FORMAT A15

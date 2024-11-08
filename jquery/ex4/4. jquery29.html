@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      body {
+        text-align: center;
+      }
+
+      select {
+        width: 200px;
+        height: 30px;
+      }
+
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('select#icon').change(function() {
+          $('#iconImg').attr('src', $(this).val());
+        })
+      });
+    </script>
+  </head>
+  <body>
+    <h3>select 객체에서 선택한 그림 출력</h3>
+    <hr />
+    <div>select를 선택하면 해당 이미지가 보입니다.</div>
+    <form action="">
+      <select id="icon">
+        <option value="../image/desert.jpg">desert</option>
+        <option value="../image/hamburger.png" selected>hamburger</option>
+        <option value="../image/koala.jpg">koala</option></select
+      ><br />
+      <img id="iconImg" src="../image/hamburger.png" />
+    </form>
+  </body>
+</html>

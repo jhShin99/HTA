@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      /* Full-width input fields */
+      input[type='text'],
+      input[type='password'] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+
+      /* Set a style for all buttons */
+      button {
+        background-color: #04aa6d;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      form {
+        width: 500px;
+        margin: 30px auto;
+        background-color: whitesmoke;
+      }
+
+      legend {
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 1.5em;
+        padding-top: 0.5em;
+      }
+
+      input[type='checkbox'] {
+        margin-bottom: 10px;
+      }
+
+      fieldset {
+        border: none;
+      }
+
+      form {
+        box-shadow: 5px 5px 5px 5px lightgray;
+      }
+
+      button:hover {
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="../ex2/6. result.html" method="post">
+      <fieldset>
+        <legend>로그인 폼</legend>
+        <div class="container">
+          <p>
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required />
+          </p>
+          <p>
+            <label for="pw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required />
+          </p>
+          <button type="submit">Login</button>
+          <label><input type="checkbox" checked="checked" name="remember" />Remember me</label>
+        </div>
+      </fieldset>
+    </form>
+  </body>
+</html>

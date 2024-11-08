@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--
+      문서 객체 만들기(2)
+      속성 지정하는 방법 예 - 웹 브라우저가 지원하는 태그의 속성 지정하는 방법
+    -->
+    <script>
+      window.onload = function () {
+        // 변수를 선언합니다.
+        var img = document.createElement('img');
+        img.src = '../image/penguin.png';
+        img.width = '300';
+        img.height = '300';
+
+        // 노드를 연결합니다.
+        document.body.appendChild(img);
+      };
+    </script>
+  </head>
+  <body></body>
+</html>

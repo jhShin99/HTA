@@ -1,0 +1,20 @@
+내장 객체란 JSP 파일이 자바 소스 파일로 변환되면서 _jspService() 메서드 내에 자동으로
+선언 및 초기화 되는 변수들을 "내장 객체"라고 합니다.
+
+아래의 코드는 모든 JSP 파일이 자바 소스로 변환될 때 공통으로 삽입되는 코드입니다.
+public void _jspService(final javax.servlet.http.HttpServletRequest request,
+                         final javax.servlet.http.HttpServletResponse response)
+
+    //final jakarta.servlet.http.HttpServletRequest - 웹 브라우저의 요청 정보를 저장하고 있는 객체
+    //final jakarta.servlet.http.HttpServletResponse response - 웹 브라우저의 요청에 대한 응답 정보를 저장하는 객체
+    final jakarta.servlet.jsp.PageContext pageContext; //JSP 페이지에 대한 정보를 저장하고 있는 객체
+    jakarta.servlet.http.HttpSession session = null; //세션 정보를 저장하고 있는 객체
+    final jakarta.servlet.ServletContext application; //웹 애플리케이션 Context의 정보를 담고 있는 객체
+    final jakarta.servlet.ServletConfig config; // JSP 페이지에 대한 설정 정보를 담고 있는 객체
+    jakarta.servlet.jsp.JspWriter out = null; //JSP 페이지의 출력할 내용을 가지고 있는 출력 스트림 객체
+    final java.lang.Object page = this; // JSP 페이지를 구현한 자바 클래스 객체
+
+    *** 내장 객체의 영역은 객체의 유효 기간 ***
+    영역이름       page 영역                            request 영역                     session 영역                application 영역
+    사용객체      pageContext     ->                   request ->                      session     ->              application
+                하나의 JSP 페이지 처리시 사용되는 영역     하나의 요청 처리시 사용되는 영역      브라우저 닫기 전까지 유지      서버 시작부터 종료까지 유지

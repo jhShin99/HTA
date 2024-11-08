@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      자바스크립트 변수의 특성 : isNaN() 함수 - 내부적으로 Number() 함수를 실행하여 숫자로 변환된 값이 NaN인지
+      확인합니다.
+    </title>
+    <script>
+      // 어떤 값이 NaN인지 판별합니다
+      document.write("Number('') : " + Number('') + '<br>'); //0
+
+      //빈문자열은 0으로 변환 되어 처리됩니다.
+      //isNaN('') => isNaN(0) => false
+      if (isNaN('')) {
+        document.write("isNaN('') true 입니다.<br>");
+      } else {
+        document.write("isNaN('') false 입니다.<br>");
+      }
+
+      if (isNaN('a')) {
+        document.write("isNaN('a') true 입니다.<br>");
+      } else {
+        document.write("isNaN('a') false 입니다.<br>");
+      }
+
+      if (isNaN('1')) {
+        document.write("isNaN('1') true 입니다.<br>");
+      } else {
+        document.write("isNaN('1') false 입니다.<br>");
+      }
+
+      if (isNaN(1)) {
+        document.write('isNaN(1) true 입니다.<br>');
+      } else {
+        document.write('isNaN(1) false 입니다.<br>');
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

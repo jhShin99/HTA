@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //이벤트 핸들러 - 특정 이벤트가 발생했을 때 실행하고자 하는 자바스크립트 함수나 코드
+      function add() {
+        var a = document.getElementById('op1');
+        var b = document.getElementById('op2');
+
+        //document.getElementById('result').value = a.value + b.value; //문자열 연결
+        document.getElementById('result').value = Number(a.value) + Number(b.value);
+        //document.getElementById('result').value = parseInt(a.value) + parseInt(b.value);
+      }
+    </script>
+  </head>
+  <body>
+    <form action="">
+      <input id="op1" type="text" size="2" /> +
+      <input id="op2" type="text" size="2" />
+      <input type="button" value="=" onclick="add()" />
+      <input id="result" type="text" size="2" />
+    </form>
+  </body>
+</html>

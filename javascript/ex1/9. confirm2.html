@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 확인:true, 취소:false
+      var answer = confirm('장바구니로 이동할까요?');
+      var list = 'Answer = ' + answer + '<br>';
+
+      if (answer) {
+        list += "<img src='../image/basket.png' width=300px>";
+      } else {
+        document.head.innerHTML += '<style>body{background:yellow}<style>'; // 그냥 = 이렇게 작성하면 다른 태그들 날아감
+      }
+
+      document.body.innerHTML = list;
+    </script>
+  </body>
+</html>

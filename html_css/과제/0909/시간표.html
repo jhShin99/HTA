@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table,
+        td,
+        th {
+            border: 1px solid black;
+        }
+
+        table caption {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        table {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        th {
+            width: 150px;
+            background: skyblue;
+        }
+
+        tr:hover {
+            background: green;
+        }
+
+        td:active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <caption>
+            <h1>시간표</h1>
+        </caption>
+        <tr>
+            <th>교시</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td></td>
+            <td></td>
+            <td rowspan="3">JSP</td>
+            <td></td>
+            <td rowspan="3">모바일프로그래밍</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td></td>
+            <td rowspan="2">컴퓨터응용</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td colspan="5">점심시간</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td rowspan="2">멀티미디어 개론</td>
+            <td rowspan="3">모바일프로그래밍</td>
+            <td colspan="2">시사상식</td>
+            <td rowspan="2">컴퓨터응용</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+
+</html>

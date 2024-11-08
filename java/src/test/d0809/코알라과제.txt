@@ -1,0 +1,7 @@
+원본파일 ) D:/temp/koala.jpg
+복사파일 ) D:/temp2/koala_copy.jpg
+
+* 이미지 파일은 바이트(이진파일)로 저장되어 있습니다.
+
+1.원본파일의 위치에 있는 파일을 FileInputStream으로 읽어오세요.
+2.읽은 데이터를 모니터가 아닌 FileOutputStream을 이용해서 파일로 출력해 주세요.

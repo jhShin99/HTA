@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      fieldset {
+        position: relative;
+        height: 120px;
+      }
+      div {
+        position: relative;
+        display: inline-block;
+        width: 300px;
+        padding: 5px;
+        color: white;
+        background-color: olivedrab;
+        top: 50px;
+        text-align: center;
+      }
+      #rotate1 {
+        transform: rotate(20deg);
+      }
+
+      #rotate1:hover {
+        transform: rotate(45deg);
+      }
+      #rotate2 {
+        transform: rotate(20deg);
+        left: 130px;
+      }
+
+      #rotate2:hover {
+        transform: rotate(-45deg);
+        left: 130px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>다양한 Transform</h3>
+    아래는 회전(rotate)을 적용합니다. [[transform : 각도)]]
+    <hr />
+    <div id="rotate1">rotate(0deg)->rotate(45deg)</div>
+    <div id="rotate2">rotate(20deg)->rotate(-45deg)</div>
+  </body>
+</html>

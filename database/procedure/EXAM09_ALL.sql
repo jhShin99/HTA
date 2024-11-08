@@ -1,0 +1,10 @@
+SET SERVEROUTPUT ON
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('사번/이름');
+
+    FOR K IN (SELECT EMPNO, ENAME FROM EMP)
+        LOOP
+            DBMS_OUTPUT.PUT_LINE(K.EMPNO || '/' || K.ENAME);
+        END LOOP;
+    END;
+/

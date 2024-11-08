@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<form action="/ex/ex1/step4/MemReg" method="get">
+  <h1>회원가입</h1>
+  <h1>GET</h1>
+  <hr>
+  <b>회원명</b>
+  <input type="text" name="name" placeholder="Enter name" required>
+
+  <b>주소</b>
+  <input type="text" name= "addr" placeholder="Enter address" required>
+
+  <b>전화번호</b>
+  <input type="text" name="tel" placeholder="Enter tel" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" required>
+
+  <b>취미</b>
+  <input type="text" name="hobby" placeholder="Enter hobby" required>
+  <div class="clearfix">
+    <button type="submit" class="submitbtn">가입</button>
+    <button type="reset" class="cancelbtn">취소</button>
+  </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      div {
+        margin: 0 auto;
+        width: 500px;
+      }
+
+      h3 {
+        background: #a4d7e4;
+        text-align: center;
+        width: 30%;
+        height: 3em;
+        line-height: 3em;
+      }
+
+      span {
+        color: red;
+      }
+
+      textarea {
+        resize: none;
+      }
+
+      textarea:focus {
+        border: 2px solid green;
+        outline: none;
+      }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        const $textarea = $("textarea");
+        const $h3 = $("h3");
+        const maxLength = $textarea.attr("maxLength");
+        $h3.text("최대 " + maxLength + "자");
+
+        $textarea.keyup(function () {
+          const inputdata = $(this).val();
+          const inputLength = inputdata.length;
+          let remain = maxLength - inputLength;
+
+          //한글을 입력한 경우 -1이 나옵니다. 이를 해결하기 위해 다음과 같이 처리합니다.
+          if (remain < 0) {
+            remain = 0;
+            $(this).val(inputdata.substr(0, maxLength));
+          }
+          $h3
+            .html("남은 글자수 : <span>" + remain + "</span>")
+            .css("width", "10em");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <p>지금 내 생각을 10자로 정리하세요</p>
+      <h3></h3>
+      <textarea cols="70" rows="5" maxlength="10"></textarea>
+    </div>
+  </body>
+</html>

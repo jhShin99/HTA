@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>템플릿 리터럴</title>
+  </head>
+  <body>
+    <script>
+      function sayHi(user) {
+        //문자열 + 변수의 형태로 문자열을 만듬
+        console.log("Hi ", +user + "!");
+      }
+
+      function sayHi2(user) {
+        // 백틱(`)을 이용한 문자열 서식(템플릿 리터럴)
+        console.log(`Hi, ${user}!`);
+      }
+
+      sayHi("자바스크립트1");
+      sayHi2("자바스크립트2");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <!--
+    반응형 웹 디자인이란 무엇입니까?
+    - 모바일 기기에서부터 대형 데스크탑에 이르기까지 모든 장치에 맞게 자동으로 조정되는 웹 사이트를 만드는 것에 관한 것입니다.
+    - 뷰포트는 웹 페이지의 사용자가 볼수있는 영역입니다.
+    - viewport 요소는 페이지의 크기와 배율을 제어하는 방법에 대한 브라우저 지침을 제공합니다.
+      width = device-width ▶ 페이지의 너비를 장치의 화면 너비에 따라 설정합니다(장치에 따라 다름)
+      initial-scale = 1 ▶ 페이지가 브라우저에 의해 처음로드 될 때 초기 줌 레벨을 설정하는데 원래 크기를 사용하도록 합니다.
+
+      NewFile.html 과 비교해서 보기
+  -->
+  <title>Document</title>
+  <style>
+      body {
+          font-family: Arial, Helvetica, sans-serif;
+      }
+
+      * {
+          box-sizing: border-box;
+      }
+
+      select,
+      input[type="text"],
+      input[type="password"],
+      input[type="button"] {
+          width: 100%;
+          padding: 15px;
+          margin: 5px 0 22px 0;
+          display: inline-block;
+          border: none;
+          background: #f1f1f1;
+          outline: none;
+          height: 40px;
+          border-radius: 5px;
+      }
+
+      select {
+          padding: 10px 15px 10px 15px;
+          vertical-align: bottom;
+      }
+
+      fieldset {
+          border-radius: 8px;
+      }
+
+      legend {
+          text-align: center;
+          font-size: 40px;
+          font-weight: bold;
+      }
+
+      #id,
+      #post1 {
+          width: 70%;
+      }
+
+      #jumin1,
+      #jumin2 {
+          width: 49%;
+      }
+
+      #id + input,
+      #post1 + input {
+          width: 29%;
+          background: orange;
+          line-height: 10px;
+          vertical-align: bottom;
+      }
+
+      textarea {
+          width: 100%;
+          resize: none;
+          outline: none;
+          margin-top: 5px;
+          border: 2px solid lightgray;
+      }
+
+      #email,
+      #domain {
+          width: 33%;
+      }
+
+      #sel {
+          width: 30%;
+          background: lightgray;
+      }
+
+      .container2 {
+          border: 1px solid lightgray;
+          padding: 1.5% 1%;
+          word-spacing: 10px;
+          margin-bottom: 20px;
+      }
+
+      input[type="text"]:focus,
+      input[type="password"]:focus {
+          background-color: #ddd;
+          outline: none;
+      }
+
+      input[type="button"]:hover {
+          opacity: 0.8;
+          cursor: pointer;
+      }
+
+      button {
+          background-color: #4caf50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+          opacity: 0.9;
+      }
+
+      button:hover {
+          opacity: 1;
+      }
+
+      .cancelbtn {
+          padding: 14px 20px;
+          background-color: #f44336;
+      }
+
+      .cancelbtn,
+      .signupbtn {
+          float: left;
+          width: 50%;
+      }
+
+      body {
+          background-color: #f5f5f5;
+      }
+
+      #myForm {
+          background-color: #fefefe;
+          margin: 5% auto 15% auto;
+          width: 850px;
+          padding: 16px;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+          display: block;
+          font-weight: bold;
+          margin: 15px 0 5px;
+      }
+  </style>
+</head>
+<body>
+<div class="container">
+  <form name="myForm" method="get" action="/ex/test/step1/RegisterServlet" id="myForm">
+    <fieldset>
+      <legend>유효성 검사</legend>
+      <label for="id">ID</label>
+      <div>
+        <input type="text" placeholder="Enter id" name="id" id="id"/>
+        <input type="button" value="ID중복검사" id="idcheck"/>
+      </div>
+
+      <label for="pass">Password</label>
+      <input
+              type="password"
+              placeholder="Enter Password"
+              name="pass"
+              id="pass"
+      />
+
+      <label for="jumin1">주민번호</label>
+      <input
+              type="text"
+              placeholder="주민번호 앞자리"
+              maxlength="6"
+              name="jumin1"
+              id="jumin1"
+      />
+      <b> - </b>
+      <input
+              type="text"
+              placeholder="주민번호 뒷자리"
+              maxlength="7"
+              name="jumin2"
+              id="jumin2"
+      />
+
+      <label for="email">E-Mail</label>
+      <input type="text" name="email" id="email"/>@
+      <input type="text" name="domain" id="domain"/>
+      <select name="sel" id="sel">
+        <option value="">직접입력</option>
+        <option value="naver.com">naver.com</option>
+        <option value="daum.net">daum.net</option>
+        <option value="nate.com">nate.com</option>
+        <option value="gmail.com">gmail.com</option>
+      </select>
+
+      <label>성별</label>
+      <div class="container2">
+        <input type="radio" name="gender" value="m" id="gender1"/>남자
+        <input type="radio" name="gender" value="f" id="gender2"/>여자
+      </div>
+
+      <label>취미</label>
+      <div class="container2">
+        <input type="checkbox" name="hobby" id="hobby1" value="공부"/>공부
+        <input type="checkbox" name="hobby" id="hobby2" value="게임"/>게임
+        <input type="checkbox" name="hobby" id="hobby3" value="운동"/>운동
+        <input type="checkbox" name="hobby" id="hobby4" value="등산"/>등산
+        <input type="checkbox" name="hobby" id="hobby5" value="낚시"/>낚시
+      </div>
+
+      <label for="post1">우편번호</label>
+      <input type="text" size="5" maxlength="5" name="post1" id="post1"/>
+      <input type="button" value="우편검색" id="postcode"/>
+
+      <label for="address">주소</label>
+      <input type="text" size="50" name="address" id="address"/>
+      <label for="intro">자기소개</label>
+      <textarea rows="10" name="intro" id="intro"></textarea>
+
+      <div class="clearfix">
+        <button type="submit" class="signupbtn">회원가입</button>
+        <button type="reset" class="cancelbtn">취소</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+</body>
+</html>

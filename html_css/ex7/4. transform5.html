@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        display: inline-block;
+        padding: 5px;
+        color: white;
+        background: olivedrab;
+        position: absolute;
+      }
+
+      div#scale0 {
+        left: 200px;
+      }
+
+      div#scale2 {
+        /* 태그의 폭과 높이를 각각 배 만큼 확대 : 기로 2배 서레로 2배 만큼 확대 */
+        transform: scale(2, 2);
+        left: 500px;
+      }
+
+      div#scale2:hover {
+        transform: scale(4, 2);
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Transform</h3>
+    <div id="scale0">내가 어떻게 변했나요?</div>
+    <div id="scale2">내가 어떻게 변했나요?</div>
+  </body>
+</html>

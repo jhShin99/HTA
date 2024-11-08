@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @keyframes rainbow {
+        0% {
+          color: red;
+        }
+
+        20% {
+          color: orange;
+        }
+
+        40% {
+          color: yellow;
+        }
+
+        60% {
+          color: green;
+        }
+
+        80% {
+          color: blue;
+        }
+
+        100% {
+          color: purple;
+        }
+      }
+
+      .gender {
+        font-size: 200px;
+        animation-name: rainbow;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var list = '';
+
+      var jumin = prompt('주민번호를 입력하세요?');
+      var hyphen = jumin.indexOf('-');
+      var juminFront = jumin.substring(0, hyphen);
+      var juminBack = jumin.substring(hyphen + 1);
+
+      list += '<h3>String 객체의 메소드 활용</h3><hr>';
+
+      if (jumin.length != 14) {
+        alert('주민번호의 길이는 14개 입니다.');
+      } else if (isNaN(juminFront) || juminFront.length !== 6) {
+        alert('앞자리 형식을 확인하세요');
+      } else if (hyphen !== 6) {
+        alert('앞자리 입력 후 -을 입력하세요');
+      } else if (isNaN(juminBack) || juminBack.length !== 7) {
+        alert('뒷자리 형식을 확인하세요');
+      } else {
+        var test = jumin.substr(7, 1);
+      }
+
+      if (test === '1' || test === '3') {
+        list += '<div class ="gender">남자</div>';
+        document.body.style.backgroundColor = '#565698';
+      } else if (test === '2' || test === '4') {
+        list += '<div class = "gender">여자</div>';
+        document.body.style.backgroundColor = 'mistyrose';
+      } else {
+        list += '<div>형식에 맞지 않습니다.</div>';
+      }
+
+      document.body.innerHTML = list;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        width: 100px;
+        height: 2rem;
+        color: white;
+        background-color: green;
+        border: none;
+      }
+
+      button:enabled {
+        background-color: green;
+      }
+
+      button:disabled {
+        background-color: gray;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="start" onclick="start()">start</button>
+    <button id="end" onclick="end()" disabled>end</button>
+    <h1 id="clock"></h1>
+    <script>
+      var start = document.getElementById('start');
+      var end = document.getElementById('end');
+      var clock = document.getElementById('clock');
+      start.onclick = function () {
+        start.disabled = true;
+        end.disabled = false;
+
+        // 매 1초마다 함수를 실행합니다.
+        timer = setInterval(function () {
+          clock.innerHTML = new Date().toLocaleString();
+          clock.style.background = 'pink';
+        }, 1000);
+      };
+
+      end.onclick = function () {
+        start.disabled = false;
+        end.disabled = true;
+        clearInterval(timer);
+      };
+    </script>
+  </body>
+</html>

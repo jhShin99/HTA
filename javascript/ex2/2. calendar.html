@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #calendar {
+        background-color: #333;
+        width: 350px;
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      caption {
+        font-size: 1.5rem;
+        color: orange;
+        padding: 10px;
+      }
+
+      table,
+      th,
+      td {
+        color: white;
+      }
+
+      th,
+      td {
+        width: 30px;
+        padding: 10px;
+      }
+
+      th:first-child,
+      td:first-child {
+        color: red;
+      }
+
+      th:last-child,
+      td:nth-child(7) {
+        color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var today = new Date();
+      var year = today.getFullYear(); //네자리 년도
+      var month = today.getMonth();
+
+      //이달의 1일 요일을 구합니다.
+      var startyoil = new Date(year, month, 1).getDay(); //0: 일 ~ 6: 토
+
+      //이달의 마지막일을 구합니다.
+      var lastday = new Date(year, month + 1, 0).getDate();
+
+      output = "<div id='calendar'><table><caption>" + year + '년' + (month + 1) + '월</caption>';
+      output += '<tr>';
+      output += '<td>일</td><td>월</td><td>화</td><td>수</td><td>목</td><td>금</td><td>토</td>';
+      output += '</tr>';
+
+      //시작이 일요일인 경우 s=0 공백 없음 i = 1 2 3 4 5 6 7
+      //시작이 월요일인 경우 s=1 공백 한개 i = 0 1 2 3 4 5 6
+      //시작이 화요일인 경우 s=2 공백 두개 i =-1 0 1 2 3 4 5
+      //시작이 수요일인 경우 s=3 공백 세개 i =-2 -1 0 1 2 3 4
+      //시작이 목요일인 경우 s=4 공백 네개 i = -3 -2 -1 0 1 2 3
+      //시작이 금요일인 경우 s=5 공백 다섯개 i = -4 -3 -2 -1 0 1
+      //시작이 토요일인 경우 s=6 공백 여섯개 i = -5 -4 -3 -2 -1 0
+      for (var i = 1 - startyoil; i <= lastday; i++) {
+        if ((i + startyoil) % 7 == 1) {
+          output += '<tr>';
+        }
+        if (i <= 0) {
+          output += '<td></td>';
+        } else {
+          output += '<td>' + i + '</td>';
+        }
+        // 시작이 일요일인 경우 s=0 출력 1 2 3 4 5 6 7
+        // 시작이 월요일인 경우 s=1 츨력   1 2 3 4 5 6
+        // 시작이 화요일인 경우 s=2 출력     1 2 3 4 5
+        if ((i + startyoil) % 7 == 0) {
+          output += '</tr>';
+        }
+      }
+
+      document.body.innerHTML = output;
+    </script>
+  </body>
+</html>

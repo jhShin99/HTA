@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-info navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Logo</a>
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link text-light" href="member_update.net">정보수정</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-light" href="logout.net">로그아웃</a>
+    </li>
+
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle text-light" href="#" id="navbardrop" data-toggle="dropdown"> 관리자 </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="member_list.net">회원정보</a>
+        <a class="dropdown-item" href="BoardList.bo">게시판</a>
+        <a class="dropdown-item" href="#">기타</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+<br/>
+
+<div class="container">
+  <table class="table table-striped mt-4">
+    <thead>
+    <tr>
+      <th>번호</th>
+      <th>이름</th>
+      <th>사는 곳</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>1</td>
+      <td>홍길동</td>
+      <td>울릉도</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>이순신</td>
+      <td>남해</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>세종대왕</td>
+      <td>궁궐</td>
+    </tr>
+    </tbody>
+  </table>
+  <!--
+    d-flex: 이 클래스는 디스플레이 속성을 flex로 설정하여 해당 div 내부의 요소들이 플렉스 박스로 배치되도록 합니다.
+    justify-content-end: 이 클래스는 버튼을 부모영역의 오른쪽으로 정렬합니다.
+    참고)
+        justify-content-start : 왼쪽정렬
+        justify-content-center : 가운데정렬
+   -->
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-info" onclick="location.href='writing.html'">글쓰기</button>
+  </div>
+  <div class="d-flex justify-content-center">
+    <ul class="pagination mt-4">
+      <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item active"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">4</a></li>
+      <li class="page-item"><a class="page-link" href="#">5</a></li>
+      <li class="page-item"><a class="page-link" href="#">6</a></li>
+      <li class="page-item"><a class="page-link" href="#">7</a></li>
+      <li class="page-item"><a class="page-link" href="#">8</a></li>
+      <li class="page-item"><a class="page-link" href="#">9</a></li>
+      <li class="page-item"><a class="page-link" href="#">10</a></li>
+      <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
+    </ul>
+  </div>
+</div>
+<script>
+    $('.pagination > li').click(function () {
+        $('.active').removeClass('active');
+
+        $(this).addClass('active');
+    });
+</script>
+</body>
+</html>

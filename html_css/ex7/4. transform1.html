@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      fieldset {
+        position: relative;
+        height: 120px;
+      }
+      div {
+        position: absolute;
+        display: inline-block;
+        width: 100px;
+        padding: 5px;
+        color: white;
+        background-color: olivedrab;
+        top: 50px;
+      }
+      #rotate0 {
+        transform: rotate(0deg);
+      }
+      #rotate1 {
+        transform: rotate(15deg);
+        left: 130px;
+      }
+      #rotate2 {
+        transform: rotate(30deg);
+        left: 230px;
+      }
+      #rotate3 {
+        transform: rotate(45deg);
+        left: 330px;
+      }
+      #rotate4 {
+        transform: rotate(60deg);
+        left: 430px;
+      }
+      #rotate5 {
+        transform: rotate(0deg);
+      }
+      #rotate6 {
+        transform: rotate(-15deg);
+        left: 130px;
+      }
+      #rotate7 {
+        transform: rotate(-30deg);
+        left: 230px;
+      }
+      #rotate8 {
+        transform: rotate(-45deg);
+        left: 330px;
+      }
+      #rotate9 {
+        transform: rotate(-60deg);
+        left: 430px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>다양한 Transform</h3>
+    아래는 회전(rotate)을 적용합니다. [[transform : 각도)]]
+    <fieldset>
+      <div id="rotate0">rotate(0deg)</div>
+      <div id="rotate1">rotate(15deg)</div>
+      <div id="rotate2">rotate(30deg)</div>
+      <div id="rotate3">rotate(45dep)</div>
+      <div id="rotate4">rotate(60deg)</div>
+    </fieldset>
+    <fieldset>
+      <div id="rotate5">rotate(60deg)</div>
+      <div id="rotate6">rotate(-15deg)</div>
+      <div id="rotate7">rotate(-30deg)</div>
+      <div id="rotate8">rotate(-45deg)</div>
+      <div id="rotate9">rotate(-60deg)</div>
+    </fieldset>
+  </body>
+</html>

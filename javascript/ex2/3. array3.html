@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      var array = ['1', '2'];
+
+      //push() 메서드는 배열의 끝에 새로운 요소를 추가합니다.
+      array.push('3');
+      array.push('4');
+      document.write(array + '<hr>');
+
+      //slice(첫 요소 인덱스, 마지막 요소 인덱스 + 1)
+      //배열 객체에 데이터 중 원하는 인덱스 구간만큼 잘라서 배열 객체로 가져온다.
+      //array[1]와 array[2] 데이터를 가져와서 sliced_arr1[0]과 sliced_arr1[1]에 할당
+      var sliced_arr1 = array.slice(1, 3);
+      document.write('After slice: <br>');
+      document.write(array + '<br>');
+      document.write(sliced_arr1 + '<br>');
+    </script>
+  </head>
+  <body></body>
+</html>

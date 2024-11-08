@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  div {
+    width: 100px;
+    height: 100px;
+  }
+
+  #box1 {
+    position: absolute;
+    /*절대 위치 - 가장 가까운 조상 중 position 속성이 static 아닌 요소를
+      찾고 없으면 body를 기준으로 배치됩니다.*/
+
+    /* 수평 좌표 : 부모 요소(body) 왼쪽 위로부터 오른쪽 30px 떨어져서 배치 */
+    left: 30px;
+
+    /* 수직 좌표 : 부모 요소(body) 왼쪽 위로부터 아래로 50px 떨어져서 배치 */
+    top: 50px;
+    background-color: red;
+  }
+
+  #box2 {
+    position: absolute;
+    /* 수평 좌표 */
+    left: 170px;
+    /* 수직 좌표 */
+    top: 50px;
+    background-color: blue;
+  }
+</style>
+
+<body>
+  <div id="box1"></div>
+  <div id="box2"></div>
+</body>
+
+</html>

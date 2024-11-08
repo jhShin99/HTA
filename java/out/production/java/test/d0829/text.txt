@@ -1,0 +1,23 @@
+public interface Sample2 {
+	int max(int a, int b); // a>b 이면 a를 리턴하고 아니면 b를 리턴합니다.
+}
+
+----------------------------------------------------------------------------------
+
+public static void main(String args[]) {
+		//인터페이스 익명 구현 객체 방법
+		int max= getMax();
+
+		System.out.println(max);
+
+		//람다식
+
+
+
+		//실행문이 하나 있는 경우 중괄호를 생략하면 세미콜론을 생략합니다.
+
+}
+
+static int getMax(Sample2 sample) {
+		return sample.max(100,20);
+}

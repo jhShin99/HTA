@@ -1,0 +1,39 @@
+* Maven은 소프트웨어 프로젝트 관리 도구이자, 자바 기반 프로젝트에서 주로 사용되는 빌드 자동화 도구입니다.
+  Maven은 프로젝트 빌드, 문서화, 보고, 종속성 관리(dependency management) 등을
+  일관되고 효율적으로 수행할 수 있도록 도와줍니다.
+
+* 빌드 : 소스코드를 실행 가능한 소프트웨어 산출물로 만드는 일련의 과정입니다.
+        프로젝트의 모든 구성 요소를 패키징하고 배포 가능한 형태로 빌드합니다.
+        이 단계에서는 WAR (Web Application Archive), JAR (Java Archive) 등의 파일 형식으로 애플리케이션을 패키징합니다.
+        빌드 과정에서는 설정 파일, 리소스 파일 등이 포함되며, 외부 의존성과 라이브러리도 함께 패키징될 수 있습니다.
+
+* 배포(Deployment) : 실행 가능한 파일을 서버에 올려 사용자가 이용할 수 있게 하는 것입니다.
+
+* 프로젝트 배포법
+
+1. 프로젝트 이름에서 우클릭
+
+2. File -> Export -> war 파일 선택
+   참고)
+   * war 파일 (Web Application Archive)은 Java 기반 웹 애플리케이션을 배포하기 위한 아카이브 파일입니다.
+   여기서 "아카이브"는 여러 파일을 하나의 파일로 묶어서 배포할 수 있게 하는 압축된 형태를 말합니다.
+
+   * war 파일은 웹 애플리케이션의 소스 코드, 구성 파일, 라이브러리 등을 하나의 파일로 압축하여 배포할 수 있도록 만든 파일 형식으로
+   .war 확장자를 가집니다.
+
+3. Destination에서 Browse를 클릭 후 저장할 폴더와 파일이름 선택
+   (1) C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\JSP.war
+   (2) Target runtime의 Optimize for a specific server runtime 선택
+       - Overwrite existing file 선택
+
+4. 이클립스 서버는 중지합니다.
+
+5. C:\Program Files\Apache Software Foundation\Tomcat 10.1\bin\Tomcat10w.exe를 클릭하고 서버를 가동합니다.
+
+6. 브라우저에서 접근할 주소를 입력합니다.
+   http://localhost:8088/ex/ex9/fileUploadForm.jsp
+
+<!--
+     tomcat zip파일 다운받을 때 Binary Distributions -> Core -> zip 파일을
+     다운받으면 안되고 32-bit/64-bit Windows Service Installer 을 다운받아야 tomcat10w.exe 이게 있다.
+ -->

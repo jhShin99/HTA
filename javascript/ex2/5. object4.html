@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //객체 생성 방법
+      //1. new 연산자 이용하기
+      // var saram = new Object(); //사용자 정의 객체 생성
+
+      //2. 객체 리터럴
+      //property는 콜론을 기준으로 키와 값의 쌍으로 작성
+      //property가 여러 개인 경우 콤마로 구분하여 작성
+      var saram = {
+        // 'name' : '나최고'
+        // "name" : "나최고" -> 다 가능 prettier 땜에 저렇게 되는거임
+        name: '나최고',
+        age: 25,
+        ki: 170.2,
+        blood: 'A',
+        address: '서울시 강남구',
+        print: function () {
+          var list = '';
+          for (var p in saram) {
+            if (p != 'print') {
+              list += p + '=' + saram[p] + '<br>';
+            }
+            document.body.innerHTML = list;
+          }
+        },
+      };
+      saram.print();
+
+      //출력 방법 : 객체.속성의 키
+      document.write('<hr>');
+      document.write(saram.name + '<br>');
+      document.write(saram.age + '<br>');
+      document.write(saram.ki + '<br>');
+      document.write(saram.blood + '<br>');
+      document.write(saram.address + '<br><hr>');
+    </script>
+  </body>
+</html>

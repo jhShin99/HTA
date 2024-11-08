@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        width: 60%;
+        margin: 0 auto;
+        border-collapse: collapse;
+      }
+
+      table th {
+        background-color: #ffc4eb;
+      }
+
+      tr {
+        height: 2em;
+      }
+
+      table th,
+      td {
+        border: 1px solid #bdbdbd;
+        text-align: center;
+      }
+
+      caption {
+        font-size: 30px;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var saram = {
+        name: '나최고',
+        age: 25,
+        ki: 170.2,
+        blood: 'A',
+        address: '서울시 강남구',
+        print: function () {
+          var list = '<table>';
+          list += '<caption> 신상 정보 </caption>';
+          list += '<thead>';
+          list += '<tr>';
+          list += '  <th> key </th>';
+          list += '  <th> value </th>';
+          list += '</tr>';
+          list += '</thead>';
+          list += '<tbody>';
+          for (var p in this) {
+            if (p != 'print') {
+              list += '<tr>';
+              list += '<td> saram.' + p + '</td>';
+              list += '<td> ' + this[p];
+              if (p == 'age') {
+                list += '세';
+              } else if (p == 'blood') {
+                list += '형';
+              } else if (p == 'ki') {
+                list += 'cm';
+              }
+
+              list += '</td></tr>';
+            }
+          }
+          list += '</tbody></table>';
+          document.body.innerHTML = list;
+        },
+      };
+      saram.print();
+    </script>
+  </body>
+</html>

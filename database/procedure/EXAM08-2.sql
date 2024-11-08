@@ -1,0 +1,12 @@
+SET SERVEROUTPUT ON
+DECLARE
+  N NUMBER := 1;
+BEGIN
+  LOOP
+    DBMS_OUTPUT.PUT_LINE(  N  );
+    N := N + 1;
+    
+        EXIT WHEN N=6;
+  END LOOP;
+END;
+/

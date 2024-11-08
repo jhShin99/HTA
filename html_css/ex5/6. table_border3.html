@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    #books caption {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0.5em;
+    }
+
+    /*
+      border-collapse: separate; (기본값) 셀의 테두리를 분리하여 그린다.
+    */
+
+    #books {
+      border-collapse: collapse;
+      width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    td {
+      border-bottom: 1px solid gray;
+      height: 2em;
+    }
+
+    th {
+      background: gray;
+      color: white;
+      height: 2em;
+    }
+
+    tbody tr:hover {
+      background: lightgray;
+    }
+  </style>
+</head>
+
+<body>
+  <table id="books">
+    <caption>추천 도서 테이블</caption>
+    <tr>
+      <th>작가</th>
+      <th>책제목</th>
+      <th>출판사</th>
+    </tr>
+    <tr>
+      <td>월터아이작슨</td>
+      <td>스티브잡스</td>
+      <td>민음사</td>
+    </tr>
+    <tr>
+      <td>흥부와 놀부</td>
+      <td>선과 악</td>
+      <td>좋은출판사</td>
+    </tr>
+    <tr>
+      <td>괴테</td>
+      <td>파우스트</td>
+      <td>교학사</td>
+    </tr>
+  </table>
+</body>
+
+</html>

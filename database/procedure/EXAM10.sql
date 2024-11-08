@@ -1,0 +1,11 @@
+VSET SERVEROUTPUT ON
+DECLARE
+  N NUMBER := 1;
+  BEGIN
+    WHILE N <= 5
+    LOOP
+      DBMS_OUTPUT.PUT_LINE(N);
+      N := N+1;
+    END LOOP;
+END;
+/

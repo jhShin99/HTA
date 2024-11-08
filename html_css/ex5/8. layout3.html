@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>위치/크기 지정 속성</title>
+  <!--
+    position 속성은 문서 상에 요소를 배치하는 방법을 지정합니다.
+    1. static(기본값) : HTML 순서대로 화면에 표시됩니다.
+  -->
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+    }
+
+    #box1 {
+      position: static;
+      background-color: red;
+    }
+
+    #box2 {
+      background-color: blue;
+    }
+
+    #box1:active {
+      /* #box1의 영역이 사라지고 blue가 위로 배치,
+         빨간색 상자는 지정한 위치로 이동  */
+      position: absolute;
+      /* 절대위치 - 원하는 위치에 배치 */
+      /* 수평 좌표 : 부모 요소(body) 왼쪽 위로부터 오른쪽 30px 떨어져서 배치 */
+      left: 30px;
+      /* 부모 요소의 왼쪽에서 30px 간격 */
+      /* 수직 좌표 : 부모 요소(body) 왼쪽 위로부터 아래로 50px 떨어져서 배치 */
+      top: 50px;
+      /* 부모 요소의 위쪽에서 50px 간격 */
+    }
+
+    #box2:active {
+      /* 파란색 박스가 지정한 위치로 이동 */
+      position: absolute;
+      /* 수평 좌표 */
+      left: 170px;
+      /* 수직 좌표 */
+      top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box1"></div>
+  <div id="box2"></div>
+</body>
+
+</html>

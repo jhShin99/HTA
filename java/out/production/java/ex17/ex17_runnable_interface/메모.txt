@@ -1,0 +1,20 @@
+ 익명 클래스 만드는 방법
+1. Thread thread  = new Thread();
+
+2. Thread thread  = new Thread(new Runnable(){});
+
+3. Thread thread  = new Thread(new Runnable(){
+
+
+
+
+   });
+
+
+4. Thread thread  = new Thread(new Runnable(){
+
+    public void run() {
+            for (char ch = 'a'; ch <= 'z'; ch++)
+               System.out.print(ch);
+    }
+   });

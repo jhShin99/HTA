@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #books caption {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0.5rem;
+      }
+
+      #books {
+        border-collapse: collapse; /* 셀의 테두리를 분리하지 않고 한 줄로 그린다. */
+        margin: 0 auto; /* 테이블의 가로 중앙 위치 */
+        width: 500px;
+        text-align: center;
+      }
+
+      td {
+        border-bottom: 1px solid gray;
+        height: 2rem;
+      }
+
+      th {
+        background: gray;
+        color: white;
+        height: 2rem;
+      }
+
+      tbody tr:hover {
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var title1 = '대한민국 전국 맛집';
+      var title2 = '지적 대화를 위한 넓고 얕은 지식';
+      var title3 = '베스트셀러 절대로 읽지 마라.';
+
+      var list = '<table id=books>';
+      list += '<caption> 베스트셀러 </caption>';
+      list += '<thead>';
+      list += '<tr>';
+      list += '<th> 순위 </th>';
+      list += '<th> 제목 </th>';
+      list += '</tr>';
+      list += '<tbody>';
+      list += '<tr> <td> 1 </td> <td> ' + title1 + ' </td> </tr>';
+      list += '<tr> <td> 2 </td> <td> ' + title2 + ' </td> </tr>';
+      list += '<tr> <td> 3 </td> <td> ' + title3 + ' </td> </tr>';
+      list += '</tbody>';
+      list += '</table>';
+
+      document.body.innerHTML = list;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      li {
+        list-style-type: none;
+        float: left; /* 위치 왼쪽 */
+        padding: 20px 20px;
+        width: 60px;
+        text-align: center;
+        color: white;
+      }
+
+      li:first-child {
+        border-radius: 10px 0 0 10px;
+      }
+
+      li:last-child {
+        border-radius: 0px 10px 10px 0px;
+      }
+
+      li:nth-child(2n) {
+        background-color: #ff0003;
+      }
+
+      li:nth-child(2n + 1) {
+        background-color: #800000;
+      }
+
+      p {
+        clear: left;
+        margin-left: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>First</li>
+      <li>Second</li>
+      <li>Third</li>
+      <li>Fourth</li>
+      <li>Sixth</li>
+      <li>Seventh</li>
+    </ul>
+    <p>나는 꿈틀이입니다.</p>
+  </body>
+</html>

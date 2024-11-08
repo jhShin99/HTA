@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <!-- 필터 -->
+    <!-- url-pattern : 적용될 URL 패턴 -->
+    <!-- 로그인 상태 확인 -->
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>net.filter.action.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/members/logout</url-pattern>
+        <url-pattern>/members/updateProcess</url-pattern>
+        <url-pattern>/members/list</url-pattern>
+        <url-pattern>/members/info</url-pattern>
+        <url-pattern>/members/delete</url-pattern>
+        <url-pattern>/boards/*</url-pattern>
+    </filter-mapping>
+
+    <!-- admin 계정이어야만 하는 경우 -->
+    <filter>
+        <filter-name>forbiddenFilter</filter-name>
+        <filter-class>net.filter.action.ForbiddenFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>forbiddenFilter</filter-name>
+        <url-pattern>/members/list</url-pattern>
+        <url-pattern>/members/info</url-pattern>
+        <url-pattern>/members/delete</url-pattern>
+    </filter-mapping>
+</web-app>

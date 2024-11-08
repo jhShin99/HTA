@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 제목줄의 단어 움직임은 titleMove라는 이름의 키프레임으로 작성 */
+      @keyframes titleMove {
+        0% {
+          background: white;
+          top: 70px;
+          left: 20px;
+        }
+
+        25% {
+          background: red;
+          top: 140px;
+          left: 150px;
+        }
+
+        50% {
+          background: orange;
+          top: 70px;
+          left: 280px;
+        }
+
+        75% {
+          background: yellow;
+          top: 0px;
+          left: 150px;
+        }
+
+        100% {
+          background: green;
+          top: 0px;
+          left: 0px;
+        }
+      }
+
+      #title {
+        display: inline-block;
+        width: 100px;
+        height: 3em;
+        line-height: 3em; /* height와 같은 크기를 주면 세로 가운데 정렬 됩니다. */
+        text-align: center;
+        border-radius: 50%;
+        animation: titleMove 6s infinite;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="title">HTML5</div>
+  </body>
+</html>

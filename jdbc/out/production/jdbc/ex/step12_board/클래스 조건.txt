@@ -1,0 +1,858 @@
+-- board 테이블
+CREATE TABLE BOARD(
+BOARD_NUM NUMBER(5), --글 번호(기본 키)
+BOARD_NAME VARCHAR2(30), --작성자
+BOARD_PASS VARCHAR2(30), --비밀번호
+BOARD_SUBJECT VARCHAR2(300), --제목
+BOARD_CONTENT VARCHAR2(4000), --내용
+BOARD_FILE VARCHAR2(50), --첨부될 파일 명(시스템에 저장되는 파일명)
+BOARD_ORIGINAL VARCHAR2(50), --첨부될 파일 명(시스템에 저장된 파일의 원래 파일명)
+BOARD_RE_REF NUMBER(5), --답변 글 작성시 참조되는 글의 번호
+BOARD_RE_LEV NUMBER(5), --답변 글의 깊이(원문 글:0, 답변:1, 답변의 답변2)
+BOARD_RE_SEQ NUMBER(5), --답변 글의 순서(원문 글 기준으로 보여주는 순서)
+BOARD_READCOUNT NUMBER(5), --글의 조회수
+BOARD_DATE DATE, --글의 작성 날짜
+PRIMARY KEY(BOARD_NUM)
+);
+
+-- 시퀀스
+CREATE SEQUENCE BOARD_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+-----------------------------------------------------------------------------------
+public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		do {
+			int menu = menuselect(sc);
+			System.out.println(menu);
+		} while (true);
+	}
+
+아래와 같이 출력결과를 위한 menuselect()와 inputNumber()를 작성합니다.
+
+1. menuselect(Scanner sc)
+   (1) 반환형 :  정수
+   (2) 매개변수 : Scanner형 1개
+   (3) 기능
+        - 메뉴 항목을 String 배열(menus)로 만든 후 메뉴 항목을 출력합니다.
+        - 메뉴를 입력받은 후 리턴합니다.
+   (4) 리턴값 : 선택한 메뉴의 값입니다.
+          inputNumber(sc, 1, menus.length);를 호출한 결과값입니다.
+
+----------------------------------------------------------------------------------
+
+2. inputNumber(Scanner sc, int start, int end)
+   start ~ end 범위의 입력 받은 정수를 리턴합니다.
+
+============ 출력 결과 =====================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>a
+숫자로 입력하세요>8
+1~7사이의 숫자를 입력하세요>1
+1
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>
+
+-------------------------------------------------------------------------------
+
+public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		BoardDAO_seq dao = new BoardDAO_seq();
+
+		do {
+			int menu = menuselect(sc);
+			switch (menu) {
+			case 1:
+				insert(sc, dao);
+				break;
+
+			case 7:
+				sc.close();
+				return;
+			}
+		} while (true);
+	}
+
+================ 메서드 ===============================
+1. insert()
+  (1) private static void insert(Scanner sc, BoardDAO_seq dao)
+  (2) Board 객체 생성
+  (3) 작성자, 비밀번호, 제목, 글 내용을 입력 받은 후 Board 객체에 저장합니다.
+  (4) dao.boardInsert(board)를 호출합니다.
+  (5) dao.boardInsert(board)를 호출한 결과가 1이면 "글이 작성되었습니다."
+          아니면 "오류가 발생되었습니다."라고 출력합니다.
+
+2. DAO 클래스의  boardInsert()
+   (1) public int boardInsert(Board board)
+   (2) 입력 받은 데이터를 저장한 매개 변수 board를 이용해서 데이터 베이스에 삽입합니다.
+   (3) 삽입 된 행의 수를 반환합니다.
+   (4) 실행 후 "글이 작성되었습니다." 라는 문장이 출력되면
+       이클립스  sql 파일에서 select * from board;를 실행해서 잘 저장되었는지 확인합니다.
+================  출력 결과 ================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>1
+작성자>admin
+비밀번호>1
+제목>자바
+글 내용>데이터베이스와 연결
+글이 작성되었습니다.
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>7
+
+-----------------------------------------------------------------------------------
+
+public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		BoardDAO_seq dao = new BoardDAO_seq();
+
+		do {
+			int menu = menuselect(sc);
+			switch (menu) {
+			case 1:
+				insert(sc, dao);
+				break;
+
+			case 5:
+				selectAll(dao);
+				break;
+
+			case 7:
+				sc.close();
+				return;
+			}
+		} while (true);
+	}
+================ 메서드 ===============================
+1. selectAll()
+  (1)  private static void selectAll(BoardDAO_seq dao)
+  (2)  dao.getBoardList(1, 10); 호출합니다.
+       1페이지에 보여줄 10개의 목록을 가져오는 메서드를 호출합니다.
+  (3)  dao.getBoardList(1, 10);
+       호출한 결과 list.isEmpty()가 true 이면 "테이블에 데이터가 없습니다."라고 출력합니다.
+       아니면 목록이 출력됩니다.
+
+2. DAO 클래스의  getBoardList()
+   (1) public List<Board> getBoardList(int page, int limit)
+                                             // 한 페이지당 10개씩 목록인 경우
+                                             //                  1페이지, 2페이지, 3페이지, 4페이지 ...
+		int startrow = 채우기;                 // 읽기 시작할 row 번호(1     11     21      31 ...
+		int endrow =   채우기;                 // 읽을 마지막 row 번호(10    20     30      40 ...
+
+================  출력 결과 ================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>5
+글번호	작성자		제목					내용					ref	lev	seq	date
+1		admin		자바              	데이터베이스와 연결      	1	0	0	2023-06-20
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		BoardDAO_seq dao = new BoardDAO_seq();
+
+		do {
+			int menu = menuselect(sc);
+			switch (menu) {
+			case 1:
+				insert(sc, dao);
+				break;
+
+			case 2:
+				update(sc, dao);
+				break;
+
+			case 5:
+				selectAll(dao);
+				break;
+
+			case 7:
+				sc.close();
+				return;
+			}
+		} while (true);
+	}
+================ 메서드 ===============================
+1. update()
+  (1)  private static void update(Scanner sc, BoardDAO_seq dao)
+  (2) "수정할 글 번호를 입력하세요>" 출력합니다. 글번호를 입력 받습니다.
+      이 때 글번호가 정수로 입력한 경우에만 값을 리턴하는 inputNumber(sc)를 호출합니다.
+  (3) Board board = select(dao, num);
+  (4) select(dao, num) 호출 후 반환형이 null이 아니면 update를 위한 제목, 글 내용, 비밀번호를
+      입력받습니다. 입력받은 데이터(제목, 글 내용)는 board의 setter를 이용해서 저장합니다.
+  (5) 만일 db에 저장된 비밀번호와 지금 입력한 비밀번호가 같으면 수정을 위한 dao.boardModify(board)를 호출합니다.
+         아니면 "비밀번호가 다릅니다."라고 출력합니다.
+  (6)  dao.boardModify(board)의 리턴값이 1이면   "수정에 성공했습니다."
+       아니면 "수정에 실패했습니다."라고 출력합니다.
+
+2. select()
+	(1) private static Board select(BoardDAO_seq dao, int num)
+	(2) Board board = dao.getDetail(num);
+	(3) dao.getDetail(num)의 반환되는 Board가 null이 아니면 board.toString()를 이용해서 출력하고
+	    null이면 "해당 글이 존재하지 않습니다." 라고 출력합니다.
+	(4) dao.getDetail(num)의 반환값을 리턴합니다.
+	(5) 글번호에 해당하는 글을 가져와서 수정이나 삭제시 비밀번호를 확인하는 작업을 합니다.
+
+3. DAO 클래스의  boardModify()
+   (1) public int boardModify(Board modifyboard)
+   (2) 수정된 로우 수를 리턴합니다.
+
+4. DAO 클래스의  getDetail()
+   (1) public Board getDetail(int num)
+   (2) 글번호 num에 해당하는 로우의 정보를 가져옵니다.
+
+5. private static int inputNumber(Scanner sc, int start, int end) 에
+   start==0 && end==0 추가
+================  출력 결과 ================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>5
+글번호	작성자		제목					내용					ref	lev	seq	date
+3		admin		날씨가 추워요         	걸을때 조심하세요       	3	0	0	2022-12-15
+2		admin		눈이 내려요          	눈이 많이 쌓였네요      	2	0	0	2022-12-15
+1		admin		자바              	데이터베이스와 연결     	1	0	0	2022-12-15
+===========================================================
+메뉴를 선택하세요>2
+수정할 글 번호를 입력하세요>3
+글번호	작성자		제목					내용					ref	lev	seq	date
+3		admin		날씨가 추워요         	걸을때 조심하세요       	3	0	0	2022-12-15
+제목>날씨가 너무 추워요
+글 내용>도로에서 걸을 때 조심하세요
+비밀번호>1
+수정에 성공했습니다.
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>5
+글번호	작성자		제목					내용						ref	lev	seq	date
+3		admin		날씨가 너무 추워요      	도로에서 걸을 때 조심하세요 	3	0	0	2022-12-15
+2		admin		눈이 내려요          	눈이 많이 쌓였네요      		2	0	0	2022-12-15
+1		admin		자바              	데이터베이스와 연결      	1	0	0	2022-12-15
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>2
+수정할 글 번호를 입력하세요>3
+글번호	작성자		제목					내용						ref	lev	seq	date
+3		admin		날씨가 너무 추워요      	도로에서 걸을 때 조심하세요 	3	0	0	2022-12-15
+제목>비밀번호 오류
+글 내용>비밀번호 오류
+비밀번호>2
+비밀번호가 다릅니다.
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>5
+글번호	작성자		제목					내용						ref	lev	seq	date
+3		admin		날씨가 너무 추워요      	도로에서 걸을 때 조심하세요 	3	0	0	2022-12-15
+2		admin		눈이 내려요          	눈이 많이 쌓였네요      		2	0	0	2022-12-15
+1		admin		자바              	데이터베이스와 연결      	    1	0	0	2022-12-15
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		BoardDAO_seq dao = new BoardDAO_seq();
+
+		do {
+			int menu = menuselect(sc);
+			switch (menu) {
+			case 1:
+				insert(sc, dao);
+				break;
+
+			case 2:
+				update(sc, dao);
+				break;
+
+			case 3:
+				reply(sc, dao);
+				break;
+
+			case 5:
+				selectAll(dao);
+				break;
+
+			case 7:
+				sc.close();
+				return;
+			}
+		} while (true);
+	}
+
+==================================================
+1. reply()
+ (1) private static void reply(Scanner sc, BoardDAO_seq dao)
+ (2)  "답변을 달 글 번호를 입력하세요>" 출력합니다. 글번호를 입력 받습니다.
+      int num = inputNumber(sc);
+ (3) Board board = select(dao, num);
+ (4) select(dao, num) 호출 후 반환형이 null이 아니면 reply를 위한 글쓴이, 제목, 글 내용, 비밀번호 데이터를
+         입력받습니다.
+ (5) dao.boardReply(board)를 호출 후 결과가 0이 아니면  "답변 달기 성공", 0이면  "답변 달기 실패" 출력합니다.
+
+2. DAO클래스의 boardReply()
+ (1) public int boardReply(Board board)
+ (2) 매개변수의 board에서  답변 글 작성시 참조되는 글의 번호,   답변 글의 깊이,       답변 글의 순서  등을
+     이용해서 트랜잭션으로 처리합니다.
+ (3) sql1 = " update board "
+	       + "set    BOARD_RE_SEQ = BOARD_RE_SEQ + 1 "
+		   + "where  BOARD_RE_REF = ? "
+		   + "and    BOARD_RE_SEQ > ?";
+ (4) sql2 = "insert into board "
+		   + "(BOARD_NUM,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,"
+		   + " BOARD_CONTENT, BOARD_FILE, BOARD_RE_REF,"
+		   + " BOARD_RE_LEV, BOARD_RE_SEQ,"
+		   + " BOARD_READCOUNT,BOARD_DATE) "
+		   + "values(board_seq.nextval,?,?,?,?,?,?,?,?,?,sysdate)";
+
+*****   출력결과  입니다.  *****
+
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>5
+글번호	작성자		제목						내용					ref	lev	seq	date
+3		admin		날씨가 너무 추워요      	도로에서 걸을 때 조심하세요 	3	0	0	2022-12-15
+2		admin		눈이 내려요          	눈이 많이 쌓였네요      		2	0	0	2022-12-15
+1		admin		자바              	데이터베이스와 연결      	1	0	0	2022-12-15
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>3
+답변을 달 글 번호를 입력하세요>2
+글번호	작성자		제목					내용					ref	lev	seq	date
+2		admin		눈이 내려요          	눈이 많이 쌓였네요      	2	0	0	2022-12-15
+글쓴이>java
+제목>대설 주의보
+글 내용>안전 안내 문자를 확인하세요
+비밀번호>1
+답변 달기 성공
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>5
+글번호	작성자		제목					내용						ref	lev	seq	date
+3		admin		날씨가 너무 추워요      	도로에서 걸을 때 조심하세요 	3	0	0	2022-12-15
+2		admin		눈이 내려요          	눈이 많이 쌓였네요      		2	0	0	2022-12-15
+4		java		  re:대설 주의보     	안전 안내 문자를 확인하세요 	2	1	1	2022-12-15
+1		admin		자바              	데이터베이스와 연결      	   1	0	0	2022-12-15
+===========================================================
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		BoardDAO_seq dao = new BoardDAO_seq();
+
+		do {
+			int menu = menuselect(sc);
+			switch (menu) {
+			case 1:
+				insert(sc, dao);
+				break;
+
+			case 2:
+				update(sc, dao);
+				break;
+
+			case 3:
+				reply(sc, dao);
+				break;
+
+			case 4:
+				delete(sc, dao);
+				break;
+
+			case 5:
+				selectAll(dao);
+				break;
+
+			case 7:
+				sc.close();
+				return;
+			}
+		} while (true);
+	}
+
+==================================================
+1. delete
+ (1) private static void delete(Scanner sc, BoardDAO_seq dao)
+ (2) System.out.print("삭제할 글 번호를 입력하세요>"); 글번호를 입력 받습니다.
+     int num = inputNumber(sc);
+ (3) Board board = select(dao, num);
+ (4) select(dao, num)을 호출 후 반환형이 null이 아니면 비밀번호를 입력 받습니다.
+         입력 후 삭제할 글 번호의 비밀번호와 지금 입력한 비밀번호를 비교합니다.
+         비밀번호가 일치하면 dao.boardDelete(board)를 호출하고  count "개 삭제되었습니다." 라고 출력합니다.
+         비밀번호가 일치하지 않으면     "비밀번호가 다릅니다."라고 출력합니다.
+ (5) 아래와 같은 데이터가 출력될 수 있도록 입력합니다.
+     board 테이블 삭제, 시퀀스 삭제 후
+     자바 프로그램을 이용해서 데이터 입력합니다.
+
+     글번호    메뉴
+     1번 글은  글쓰기
+     2번 글은  답변달기 - 1번에 달아요
+     3번 글은  답변달기 - 1번에 달아요
+     4번 글은  답변달기 - 2번에 달아요
+     5번 글은  답변달기 - 1번에 달아요
+     6번 글은  글쓰기
+     7번 글은  답변달기 - 6번에 달아요
+     8번 글은  답변달기 - 3번에 달아요
+
+
+글번호	작성자		제목					내용					ref	lev	seq	date
+6		admin		힘내세요            	힘내세요            	6	0	0	2024-02-13
+7		admin		  re:힘내세요       	운동하세요           	6	1	1	2024-02-13
+1		admin		JSP 공부는 재미있어요   	열심히 해봐요         	1	0	0	2024-02-13
+5		admin		  re:저도요        	저도요             	1	1	1	2024-02-13
+3		admin		  re:나도 찬성      	찬성입니다.          	1	1	2	2024-02-13
+8		admin		    re:나도 찬성    	하하              	1	2	3	2024-02-13
+2		admin		  re:JAVA도      	JAVA도           	1	1	4	2024-02-13
+4		admin		    re:나도 찬성이요  	찬성              	1	2	5	2024-02-13
+
+
+
+* 삭제하고자 하는 규칙을 찾습니다.
+		 1. 글번호 3를 삭제시 8번도 같이 삭제합니다.
+		    1) 3번을 선택하기 때문에  BOARD_RE_REF(1)   BOARD_RE_LEV(1)   BOARD_RE_SEQ(2)의 값은 알 수 있습니다.
+		    2) 어느 BOARD_RE_SEQ까지 선택할 지 범위를 구해야 합니다.
+		    3) 위의 예처럼 3번 글을 선택하면  3번 글의 BOARD_RE_REF, BOARD_RE_LEV 값이 같고
+               BOARD_RE_SEQ는 2보다 큰 값 중에서  가장 작은 BOARD_RE_SEQ 값을 찾습니다.
+
+		       (1) SELECT min(board_re_seq)
+		           FROM BOARD
+		           WHERE BOARD_RE_REF = ?
+		           AND BOARD_RE_LEV = ?
+		           AND BOARD_RE_SEQ > ?
+
+               (2) SELECT min(board_re_seq)
+                   FROM   BOARD
+                   WHERE  BOARD_RE_REF = 1
+                   AND    BOARD_RE_LEV = 1
+                   AND    BOARD_RE_SEQ > 2;
+
+                   MIN(BOARD_RE_SEQ)
+                   ------------------------
+                                         4
+
+
+
+
+
+
+		    4) 3)에서 구한  BOARD_RE_SEQ(4)에서 1을 뺀 3까지 구합니다.
+
+		       (1)
+		          SELECT min(board_re_seq)-1
+                  FROM BOARD
+                  WHERE BOARD_RE_REF = ?
+                  AND BOARD_RE_LEV = ?
+                  AND BOARD_RE_SEQ > ?
+
+               (2)
+                  SELECT min(board_re_seq)-1
+                  FROM   BOARD
+                  WHERE  BOARD_RE_REF = 1
+                  AND    BOARD_RE_LEV = 1
+                  AND    BOARD_RE_SEQ > 2;
+
+                  MIN(BOARD_RE_SEQ)
+                  ------------------------
+                                         3
+
+
+
+
+
+
+		    5)  선택한 글을 기준으로  BOARD_RE_REF는 같고  BOARD_RE_LEV는 같거나 크고
+		        BOARD_RE_SEQ는 자기의  BOARD_RE_SEQ 부터  4번에서 구한 값을 적용합니다.
+
+		        (1) delete from board
+		            where BOARD_RE_REF = ?
+		            and   BOARD_RE_LEV >= ?
+		            and   BOARD_RE_SEQ <= 4번에서 구한 값
+
+                (2) delete from board
+                    where BOARD_RE_REF = ?
+                    and   BOARD_RE_LEV >= ?
+                    and   BOARD_RE_SEQ >= ?
+                    and   BOARD_RE_SEQ <= (SELECT min(board_re_seq) - 1
+                                            FROM   BOARD
+                                            WHERE  BOARD_RE_REF = ?
+                                            AND    BOARD_RE_LEV = ?
+                                            AND    BOARD_RE_SEQ > ?)
+
+                (3)
+                    SELECT BOARD_NUM
+                    FROM BOARD
+                    where BOARD_RE_REF = 1
+                    and   BOARD_RE_LEV >= 1
+                    and   BOARD_RE_SEQ >= 2
+                    and   BOARD_RE_SEQ <= (SELECT min(board_re_seq) - 1
+                                           FROM   BOARD
+                                           WHERE  BOARD_RE_REF = 1
+                                           AND    BOARD_RE_LEV = 1
+                                           AND    BOARD_RE_SEQ > 2);
+
+                    BOARD_NUM
+                    ----------
+                             3
+                             8
+
+	      2. 글번호 1번을 삭제하는 경우
+	         1)  글번호 1번의 BOARD_RE_REF,   BOARD_RE_LEV 값이 같으면서  BOARD_RE_SEQ=0보다 큰 글은 존재하지 않습니다.
+	         2)  이 경우는  같은 BOARD_RE_REF 중에서 BOARD_RE_SEQ가 가장 큰 값을 구하면 됩니다.
+
+	            (1)
+	            SELECT max(board_re_seq)
+	            FROM   BOARD
+	            WHERE  BOARD_RE_REF = ?
+
+	            (2)
+	            SELECT max(board_re_seq)
+	            FROM   BOARD
+	            WHERE  BOARD_RE_REF=1;
+
+	            MAX(BOARD_RE_SEQ)
+	            -----------------
+	                            5
+
+                (3)
+                SELECT BOARD_NUM
+                FROM   BOARD
+                where  BOARD_RE_REF  = 1
+                and    BOARD_RE_LEV >= 0
+                and    BOARD_RE_SEQ >= 0
+                and    BOARD_RE_SEQ <= (SELECT max(board_re_seq)
+                                        FROM   BOARD
+                                        WHERE  BOARD_RE_REF = 1);
+
+                BOARD_NUM
+                ---------
+                        3
+                        4
+                        5
+                        1
+                        2
+                        8
+
+          3. 최종 삭제 쿼리입니다.
+
+             delete from board
+             where  BOARD_RE_REF = ?
+             and    BOARD_RE_LEV >=?
+             and    BOARD_RE_SEQ >=?
+             and    BOARD_RE_SEQ <= (nvl((SELECT min(board_re_seq)-1
+                                          FROM  BOARD
+                                          WHERE BOARD_RE_REF = ?
+                                          AND   BOARD_RE_LEV = ?
+                                          AND   BOARD_RE_SEQ > ?),
+                                          (SELECT max(board_re_seq)
+                                           from   BOARD
+                                           WHERE  BOARD_RE_REF = ?))
+                                    );
+
+               3-1) 3번글 선택시 3,8번글 삭제
+               BOARD_RE_REF(1) BOARD_RE_LEV(1) BOARD_RE_SEQ(2)
+
+               SELECT board_num
+               from board
+               where BOARD_RE_REF = 1
+               and   BOARD_RE_LEV >=1
+               and   BOARD_RE_SEQ >=2
+               and   BOARD_RE_SEQ <=( nvl((SELECT min(board_re_seq)-1
+                                         FROM BOARD
+                                         WHERE BOARD_RE_REF=1
+                                         AND   BOARD_RE_LEV=1
+                                         AND   BOARD_RE_SEQ>2) ,
+                                         (SELECT max(board_re_seq)
+                                          FROM   BOARD
+                                          WHERE  BOARD_RE_REF=1  ))
+                                      );
+
+              3-2) 1번글 선택시 1,2,3,4,5,8 삭제
+                             BOARD_RE_REF(1) BOARD_RE_LEV(0) BOARD_RE_SEQ(0)
+
+                             SELECT board_num
+                             from board
+                             where BOARD_RE_REF = 1
+                             and   BOARD_RE_LEV >=0
+                             and   BOARD_RE_SEQ >=0
+                             and   BOARD_RE_SEQ <=( nvl((SELECT min(board_re_seq)-1
+                                                       FROM BOARD
+                                                       WHERE BOARD_RE_REF=1
+                                                       AND   BOARD_RE_REF=0
+                                                       AND   BOARD_RE_SEQ>0) ,
+                                                       (SELECT max(board_re_seq)
+                                                        FROM   BOARD
+                                                        WHERE  BOARD_RE_REF=1  ))
+                                                    );
+
+              3-3) 4번글 삭제시 4번글만 삭제
+                   4번글 선택시 BOARD_RE_REF(1) BOARD_RE_LEV(2) BOARD_RE_SEQ(5)
+                            SELECT board_num
+                            from board
+                            where BOARD_RE_REF = 1
+                            and   BOARD_RE_LEV >=2
+                            and   BOARD_RE_SEQ >=5
+                            and   BOARD_RE_SEQ <=( nvl((SELECT min(board_re_seq)-1
+                                                   FROM BOARD
+                                                   WHERE BOARD_RE_REF=1
+                                                   AND   BOARD_RE_REF=2
+                                                   AND   BOARD_RE_SEQ>5) ,
+                                                   (SELECT max(board_re_seq)
+                                                    FROM   BOARD
+                                                    WHERE  BOARD_RE_REF=1  ))
+                                                 );
+
+              3-4) 2번글 삭제시 2,4번 글 삭제
+                   2번글 선택시 BOARD_RE_REF(1) BOARD_RE_LEV(1) BOARD_RE_SEQ(4)
+                           SELECT board_num
+                           from board
+                           where BOARD_RE_REF = 1
+                           and   BOARD_RE_LEV >=1
+                           and   BOARD_RE_SEQ >=4
+                           and   BOARD_RE_SEQ <=( nvl((SELECT min(board_re_seq)-1
+                                                  FROM BOARD
+                                                  WHERE BOARD_RE_REF=1
+                                                  AND   BOARD_RE_LEV=1
+                                                  AND   BOARD_RE_SEQ>4) ,
+                                                  (SELECT max(board_re_seq)
+                                                   FROM   BOARD
+                                                   WHERE  BOARD_RE_REF=1  ))
+                                                );
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		BoardDAO_seq dao = new BoardDAO_seq();
+
+		do {
+			int menu = menuselect(sc);
+			switch (menu) {
+			case 1:
+				insert(sc, dao);
+				break;
+			case 2:
+				update(sc, dao);
+				break;
+			case 3:
+				reply(sc, dao);
+				break;
+			case 4:
+				delete(sc, dao);
+				break;
+			case 5:
+				selectAll(dao);
+				break;
+			case 6:
+				selectPage(sc, dao);
+				break;
+			case 7:
+				sc.close();
+				return;
+			}
+		} while (true);
+	}
+
+=============================================
+1. selectPage()
+   (1) private static void selectPage(Scanner sc, BoardDAO_seq dao)
+
+   (2) int listcount = dao.count();
+
+   (3) listcount가 0보다 크면     "한 페이지에 보여줄 목록을 입력하세요(1~10)>"
+       출력하고 limit를 구합니다.
+       int limit = inputNumber(sc,1,10);
+       listcount가 0이면 "테이블에 데이터가 없습니다." 출력합니다.
+
+   (4) listcount와 limit를 이용해서 최대 페이지(maxpage)를 구합니다.
+       listcount가  1~10이고  limit=10이면 maxpage=1
+       listcount가 11~20이고  limit=10이면 maxpage=2
+       listcount가 21~30이고  limit=10이면 maxpage=3
+
+   (5) "선택할 페이지를 입력하세요(1~최대페이지값)" 출력 후 page를 입력받습니다.
+
+   (6) List<Board> arrs = dao.getBoardList(?, ?);
+       출력 합니다.
+
+2. DAO클래스의 count()
+   (1) public int count()
+   (2) board 테이블의 총 row수를 반환합니다.
+
+
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>5
+글번호	작성자		제목			내용						ref	lev	seq	date
+6	admin		힘내세요            	힘내세요            	6	0	0	2024-02-13
+7	admin		  re:힘내세요       	운동하세요           	6	1	1	2024-02-13
+1	admin		JSP 공부는 재미있어요   	열심히 해봐요         	1	0	0	2024-02-13
+5	admin		  re:저도요        	저도요             	1	1	1	2024-02-13
+3	admin		  re:나도 찬성      	찬성입니다.          	1	1	2	2024-02-13
+8	admin		    re:나도 찬성    	하하              	1	2	3	2024-02-13
+2	admin		  re:JAVA도      	JAVA도           	1	1	4	2024-02-13
+4	admin		    re:나도 찬성이요  	찬성              	1	2	5	2024-02-13
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>6
+한 페이지에 보여줄 목록을 입력하세요(1~10)>3
+선택할 페이지를 입력하세요(1~3)>
+1
+글의 총 갯수 : 8
+글번호	작성자		제목					내용					ref	lev	seq	date
+6		admin		힘내세요            	힘내세요            	6	0	0	2024-02-13
+7		admin		  re:힘내세요       	운동하세요           	6	1	1	2024-02-13
+1		admin		JSP 공부는 재미있어요   	열심히 해봐요         	1	0	0	2024-02-13
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>6
+한 페이지에 보여줄 목록을 입력하세요(1~10)>3
+선택할 페이지를 입력하세요(1~3)>2
+글의 총 갯수 : 8
+글번호	작성자		제목					내용					ref	lev	seq	date
+5		admin		  re:저도요        	저도요             	1	1	1	2024-02-13
+3		admin		  re:나도 찬성      	찬성입니다.          	1	1	2	2024-02-13
+8		admin		    re:나도 찬성    	하하              	1	2	3	2024-02-13
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>6
+한 페이지에 보여줄 목록을 입력하세요(1~10)>3
+선택할 페이지를 입력하세요(1~3)>3
+글의 총 갯수 : 8
+글번호	작성자		제목					내용					ref	lev	seq	date
+2		admin		  re:JAVA도      	JAVA도           	1	1	4	2024-02-13
+4		admin		    re:나도 찬성이요  	찬성              	1	2	5	2024-02-13
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.종료
+===========================================================
+메뉴를 선택하세요>
+
+------------------------------------------------------------------------------------------------------------
+
+** 0906 과제 **
+===========================================================
+1.글쓰기
+2.수정
+3.답변달기
+4.글삭제
+5.조회
+6.페이지 선정
+7.검색
+8.종료
+===========================================================
+메뉴를 선택하세요 >

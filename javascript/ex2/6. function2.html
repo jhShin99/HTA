@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 함수 자료형 변수명 뒤에 소괄호를 열고 닫으면 함수를 실행하게 됩니다.
+      // 이를 "함수를 호출한다" 라고 합니다.
+      functionVar();
+      /* functionVar is not a function 발생 :
+            익명함수는 함수 표현 뒤에 함수를 호출해야 에러가 없다. */
+
+      // 함수 표현식, 이름이 없기 때문에 익명함수라고 한다.
+      var functionVar = function () {
+        var output = prompt('숫자를 입력하세요', '숫자');
+        alert('입력한 숫자 = ' + output);
+      };
+
+      // functionVar의 자료형 확인하고 내용 확인
+      document.write('type = ' + typeof functionVar + '<br>' + functionVar);
+    </script>
+  </head>
+  <body></body>
+</html>

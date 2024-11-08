@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <!--
+      * 너비와 높이, 투명도가 변화
+      1. show( )   : 숨겨진 요소를 화면에 표시합니다.
+      2. hide( )   : 화면의 요소를 화면에서 숨깁니다.
+      3. toggle( ) : show( ) 와 hide( )를 반복합니다.
+
+      toggle(speed)메서드 : show()메서드와 hide()메서드를 번갈아 실행합니다.
+      speed:밀리초 단위의 숫자나 문자열 slow(600밀리초), normal(400밀리초), fast(200밀리초)를 입력합니다.
+      ※ (1000) = 1초
+
+      * 투명도 변화
+      4. fadeIn( )  : 숨겨진 요소를 서서히 나타나게 합니다
+      5. fadeOut( ) : 화면의 요소를 서서히 사라지게 합니다
+      6. fadeToggle( ) : fadeIn( )와 fadeOut( )를 반복합니다.
+
+      * 높이 변화
+      7. slideDown( ) : 숨겨진 요소를 위에서 아래로 슬라이드하여 보이게 만듭니다.
+      8. slideUp( ) : 요소를 아래에서 위로 슬라이드하여 숨깁니다.
+      9. slideToggle( ) : slideDown( )와 slideUp( )를 반복합니다.
+
+      -상태변화가 완료된 후에는 display 상태를 block 또는 none으로 변경됩니다.
+    -->
+    <script>
+      //이벤트를 연결합니다.
+      $(document).ready(function () {
+        //이벤트를 연결합니다.
+        $("button").click(function () {
+          //간단한 효과를 적용합니다.
+          $(".page").slideToggle(5000);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <button>slide Toggle</button>
+    <div class="page">
+      <h1>안녕?</h1>
+      <p>잘~ 주무셨나요?</p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      li:nth-child(1) {
+        color: green;
+        font-weight: bold;
+        font-style: italic;
+      }
+      li:nth-child(2) {
+        color: yellow;
+      }
+      li:nth-child(3) {
+        color: red;
+      }
+      li:last-child {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var itemList = ['국수', '계란', '고추장', '김치', '오이'];
+
+      var output = '<h1> 비빔국수 재료 </h1><hr>';
+      output += '<ul> <li> ' + itemList[0] + '</li>';
+      output += '<li> ' + itemList[1] + '</li>';
+      output += '<li> ' + itemList[2] + '</li>';
+      output += '<li> ' + itemList[3] + '</li>';
+      output += '<li> ' + itemList[4] + '</li></ul>';
+      document.body.innerHTML = output;
+    </script>
+  </body>
+</html>

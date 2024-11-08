@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form handling with JavaScript</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        border: 1px solid gray;
+      }
+
+      th,
+      td {
+        padding: 1em;
+        border: 1px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>서적 주문 양식</h2>
+    <form action="" method="get">
+      <!-- 입력할 때 마다 변경됩니다. -->
+      <table>
+        <tr>
+          <th>책 제목</th>
+          <th>가격</th>
+          <th>수량</th>
+          <th>합계</th>
+        </tr>
+        <tr>
+          <td>4차 산업</td>
+          <td class="price">30,000원</td>
+          <td><input id="book1" type="text" size="2" value="0" onclick="this.select()" /></td>
+          <!--
+          this.select()는 각 서적 수량을 표시하는 텍스트 박스를 클릭하면 그 값이 선택되도록 하는 기능을 갖는다.
+          this는 <input> 요소의 DOM을 가리키게 된다. 즉, 자신이 속한 DOM을 가리키는 것이다.
+          -->
+          <td><input id="book1Total" type="text" size="6" value="0" readonly />원</td>
+        </tr>
+        <tr>
+          <td>다이어트</td>
+          <td class="price">27,000원</td>
+          <td><input id="book2" type="text" size="2" value="0" onclick="this.select()" /></td>
+          <td><input id="book2Total" type="text" size="6" value="0" readonly />원</td>
+        </tr>
+        <tr>
+          <td>윤식당</td>
+          <td class="price">25,000원</td>
+          <td><input id="book3" type="text" size="2" value="0" onclick="this.select()" /></td>
+          <td><input id="book3Total" type="text" size="6" value="0" readonly />원</td>
+        </tr>
+        <tr>
+          <td>합계</td>
+          <td>&nbsp;</td>
+          <td><input id="totalNumber" type="text" size="2" value="0" readonly /></td>
+          <td><input id="totalPrice" type="text" size="6" value="0" readonly />원</td>
+        </tr>
+      </table>
+      <button type="reset">초기화</button>
+      <button type="submit">제출</button>
+    </form>
+    <script>
+      // 각 책의 가격을 배열에 저장
+      const prices = [30000, 27000, 25000];
+
+      // 수량과 총합계를 계산하는 함수
+      function calculate() {
+        // 각 서적 수량과 합계를 계산
+        let book1Quantity = parseInt(document.getElementById('book1').value) || 0;
+        let book2Quantity = parseInt(document.getElementById('book2').value) || 0;
+        let book3Quantity = parseInt(document.getElementById('book3').value) || 0;
+
+        let book1Total = book1Quantity * prices[0];
+        let book2Total = book2Quantity * prices[1];
+        let book3Total = book3Quantity * prices[2];
+
+        // 각 서적의 총합을 해당 input 필드에 표시
+        document.getElementById('book1Total').value = book1Total.toLocaleString();
+        document.getElementById('book2Total').value = book2Total.toLocaleString();
+        document.getElementById('book3Total').value = book3Total.toLocaleString();
+
+        // 총 수량과 총 가격을 계산
+        let totalNumber = book1Quantity + book2Quantity + book3Quantity;
+        let totalPrice = book1Total + book2Total + book3Total;
+
+        // 총 수량과 총 가격을 해당 input 필드에 표시
+        document.getElementById('totalNumber').value = totalNumber;
+        document.getElementById('totalPrice').value = totalPrice.toLocaleString();
+      }
+
+      // 수량이 입력될 때마다 계산 함수 호출
+      document.getElementById('book1').addEventListener('input', calculate);
+      document.getElementById('book2').addEventListener('input', calculate);
+      document.getElementById('book3').addEventListener('input', calculate);
+    </script>
+  </body>
+</html>

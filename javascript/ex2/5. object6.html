@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        width: 60%;
+        margin: 0 auto;
+        border-collapse: collapse;
+      }
+
+      table th {
+        background-color: #ffc4eb;
+      }
+
+      tr {
+        height: 2em;
+      }
+
+      table th,
+      td {
+        border: 1px solid #bdbdbd;
+        text-align: center;
+      }
+
+      caption {
+        font-size: 30px;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var book = {
+        title: '수미네 반찬',
+        publisher: '성안당',
+        author: '김수미',
+        price: 15300,
+        info: {
+          pages: 442,
+          date: '2010년 1월 30일',
+          ISBN10: '8970506470',
+          size: '188*243mm',
+        },
+        print: function () {
+          var list = '<table>';
+          list += '<caption> 서적 정보 </caption>';
+          list += '<thead>';
+          list += '<tr>';
+          list += '  <th> key </th>';
+          list += '  <th> value </th>';
+          list += '</tr>';
+          list += '</thead>';
+          list += '<tbody>';
+          for (var p in this) {
+            if (p != 'print') {
+              if (typeof this[p] != 'object') {
+                list += '<tr>';
+                list += '<td> book.' + p + '</td>';
+                list += '<td> ' + this[p];
+                if (p == 'price') {
+                  list += '원';
+                }
+                list += ' </td>';
+                list += '</tr>';
+              } else {
+                for (var q in this[p]) {
+                  list += '<tr>';
+                  list += '<td> book.' + p + '.' + q + '</td>';
+                  list += '<td> ' + this[p][q];
+                  if (q == 'pages') {
+                    list += '페이지';
+                    list += '</td>';
+                    list += '</tr>';
+                  }
+                }
+              }
+            }
+          }
+          list += '</tbody>';
+          list += '</table>';
+
+          document.body.innerHTML = list;
+        },
+      };
+
+      book.print();
+    </script>
+  </body>
+</html>

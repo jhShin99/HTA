@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-image: url(../image/desert.jpg);
+      background-repeat: no-repeat;
+
+      /*
+        스크롤을 내리면 배경 이미지가 위로 올라간다.
+        background-attachment : 스크롤 여부를 정합니다.
+                                기본(scroll)
+      */
+      background-attachment: scroll;
+
+      /*
+        적용되는 요소의 크기에 비례하여 배경 이미지 적용
+        형식) background-size: x% y%;
+      */
+      background-size: 100%;
+      /*배경 이미지를 가로에 꽉 채워요*/
+      ;
+
+      div {
+        height: 950px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    제가 보이나요?
+    스크롤을 내리면 배경 이미지도 올라가요~
+  </div>
+</body>
+
+</html>

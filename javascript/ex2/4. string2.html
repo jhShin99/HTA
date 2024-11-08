@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var list = '';
+
+      var id = prompt('주민번호를 입력하세요?');
+
+      var test = id.substr(7, 1);
+      var jumin = '<h3>String 객체의 메소드 활용</h3><hr>';
+
+      if (test === '1' || test === '3') {
+        list += '<div>남자</div>';
+        document.body.style.backgroundColor = '#565698';
+      } else if (test === '2' || test === '4') {
+        list += '<div>여자</div>';
+        document.body.style.backgroundColor = 'mistyrose';
+      }
+
+      document.body.innerHTML = list;
+    </script>
+  </body>
+</html>

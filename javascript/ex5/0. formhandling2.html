@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function updateAll() {
+        var prices = document.getElementsByClassName("price");
+        var plength = prices.length;
+
+        var totalNumber = 0; // 총 수량
+        var totalPrice = 0; // 총 합계
+
+        for (var i = 0; i < plength; i++) {
+          var id = "book" + (i + 1);
+          var quantity = parseInt(document.getElementById(id).value);
+
+          //수량이 숫자가 아닐 경우 처리
+          if (isNaN(quantity)) {
+            alert("숫자로 입력하세요");
+            quantity = 0;
+            document.getElementById(id).value = quantity;
+          }
+
+          // 가격 구하기
+          var priceText = prices[i].textContent.replace(/,|원/g, "");
+
+          // 가격 * 수량
+          var total = parseInt(priceText) * quantity;
+
+          // 결과를 화면에 표시
+          document.getElementById("book" + (i + 1) + "Total").value = total.toLocalString();
+
+          // 총합계 업데이트
+          totalNumber += quantity;
+          totalPrice += total;
+        }
+
+        // 총 수량과 총 가격 표시
+        document.getElementById("totalNumber").value = totalNumber.toLocaleString();
+        document.getElementById("totalPrice").value = totalPrice.toLocaleString();
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--
+    자바스크립트에서는 함수도 하나의 자료형이므로 매개변수로 전달할 수 있습니다.
+    이렇게 매개변수로 전달하는 함수를 콜백함수라고 부릅니다.
+    -->
+    <script>
+      //함수 선언
+      function callTenTimes(callback) {
+        callback(0, '00');
+        callback(1, '10');
+        callback(2, '20');
+        callback(3, '30');
+        callback(4, '40');
+        callback(5, '50');
+        callback(6, '60');
+        callback(7, '70');
+        callback(8, '80');
+        callback(9, '90');
+      }
+
+      //함수를 호출
+      callTenTimes(function (index, item) {
+        alert('첫번째 매개변수 값 : ' + index + ' 두번째 매개변수 값: ' + item);
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

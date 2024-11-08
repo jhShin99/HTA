@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/fruit.css">
+    <script src="http://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#form').submit(function () {
+                const selectedLength = $("input:checkbox:checked").length;
+                if (selectedLength < 1) {
+                    alert("한 개 이상 선택해 주세요");
+                    return false;
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<h1>당신이 좋아하는 과일을 선택 하세요</h1>
+<form action="/ex/ex1/step3/ChoiceFruit2" method="get" id="form">
+    <label class="container">
+        <input type="checkbox" name="fruit" value="apple.png">사과
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        <input type="checkbox" name="fruit" value="grape.png">포도
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        <input type="checkbox" name="fruit" value="strawberry.png">딸기
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        <input type="checkbox" name="fruit" value="water-melon.png">멜론
+        <span class="checkmark"></span>
+    </label>
+    <input type="submit" value="선택">
+</form>
+</body>
+</html>

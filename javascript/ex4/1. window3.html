@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 팝업 차단 해제 후 브라우저에서 실행하세요 -->
+    <script>
+      /*
+        형식 : open(URL, name, option)
+        URL : 팝업창으로 보여줄 문서
+        name : 팝업창의 이름(특별한 이름 : _blank, _self ..)
+        option : 옵션 (하나의 문자열안에 콤마로 속성들을 구분해서 작성)
+
+        옵션 이름     설명                    입력할 수 있는 값
+        width        새 윈도우 넓이               픽셀 값
+        height       새 윈도우 넓이               픽셀 값
+      */
+
+      // 변수를 선언합니다.
+      var child = window.open('1. window.html', 'width=300, height=200');
+      //_self : 현재 페이지에서 열립니다.
+      //_blank : 새창에서 열립니다. (기본)
+    </script>
+  </head>
+  <body></body>
+</html>

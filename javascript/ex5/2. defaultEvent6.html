@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 20px auto;
+      }
+
+      fieldset {
+        margin: 0 auto;
+        width: 600px;
+      }
+
+      legend {
+        text-align: center;
+      }
+
+      form {
+        margin: 0 auto;
+        width: 700px;
+      }
+
+      label {
+        display: inline-block;
+        width: 150px;
+        color: purple;
+        text-align: right;
+      }
+
+      input {
+        border-radius: 3px;
+        border: 1px solid green;
+        height: 23px;
+        width: 200px;
+        margin-bottom: 5px;
+        box-sizing: border-box;
+      }
+
+      input:focus {
+        outline: none;
+        border: 1px dotted green;
+      }
+
+      input[type="submit"] {
+        background: green;
+        height: 30px;
+        color: white;
+        margin-left: 26%;
+      }
+
+      input[type="submit"]:hover {
+        opacity: 0.8;
+        cursor: pointer;
+      }
+
+      span {
+        color: red;
+      }
+    </style>
+    <script>
+      function whenSubmit() {
+        var input = document.querySelectorAll("input");
+        var span = document.querySelectorAll("span");
+        var label = document.querySelectorAll("label");
+
+        var isValid = true;
+        for (var i = 0; i < span.length; i++) {
+          var message = "";
+          if (!input[i].value.trim()) {
+            message = label[i].textContent + " 입력하세요";
+            if (isValid) {
+              input[i].focus();
+            }
+            isValid = false;
+          }
+          span[i].textContent = message;
+        }
+
+        if (isValid) {
+          // 비밀번호가 같은지 확인합니다.
+          if (input[1].value == input[2].value) {
+            alert("성공");
+            return true; // 폼 제출
+          } else {
+            alert("비밀번호가 다릅니다. 다시 입력해 주세요");
+            input[1].value = "";
+            input[2].value = "";
+            input[1].focus();
+            return false; // 폼 제출 안 함
+          }
+        }
+        return false; // 폼 제출 안 함
+      }
+    </script>
+  </head>
+  <body>
+    <form onsubmit="return whenSubmit()" action="result.html">
+      <fieldset>
+        <legend>회원가입 폼</legend>
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" /><span></span><br />
+
+        <label for="pass">비밀번호</label>
+        <input type="password" id="pass" name="pass" /><span></span><br />
+
+        <label for="pass-check">비밀번호 확인</label>
+        <input type="password" id="pass-check" name="pass-check" /><span></span><br />
+        <input type="submit" value="제출" />
+      </fieldset>
+    </form>
+  </body>
+</html>

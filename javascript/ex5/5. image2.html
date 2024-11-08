@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>radio 객체에서 선택한 그림 출력</title>
+  </head>
+  <body>
+    <h3>선택한 그림 출력</h3>
+    <hr />
+    <div>radio 버튼을 클릭하면 이미지가 바뀝니다.</div>
+    <form action="">
+      <label><input type="radio" name="icon" value="../image/basket.png" />image1</label>
+      <label><input type="radio" name="icon" value="../image/desert.jpg" checked />image2</label>
+      <label><input type="radio" name="icon" value="../image/hamburger.png" />image3</label>
+      <img src="../image/desert.jpg" id="iconImg" width="100px" height="100px" />
+    </form>
+
+    <script>
+      var icons = document.querySelectorAll("input[name=icon]");
+      for (var i = 0; i < icons.length; i++) {
+        icons[i].addEventListener("click", show);
+      }
+
+      function show() {
+        document.querySelector("#iconImg").src = this.value;
+      }
+    </script>
+  </body>
+</html>

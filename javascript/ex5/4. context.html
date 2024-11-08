@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oncontextmenu</title>
+    <!-- context menu : 사용자가 마우스 오른쪽 버튼을 클릭했을 때 나타나는 메뉴를 의미합니다. -->
+    <script>
+      document.oncontextmenu = function () {
+        return false;
+      };
+    </script>
+  </head>
+  <body>
+    <h3>마우스 관련 이벤트 리스너</h3>
+    <hr />
+    <div>마우스 오른쪽 클릭해 보세요</div>
+    <img src="../image/desert.jpg" width="300px" height="300px" />
+  </body>
+</html>

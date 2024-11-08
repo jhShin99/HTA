@@ -1,0 +1,18 @@
+package ex.step9_select_statement_method_list_try_with_resources;
+
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+        DAO_Resource dao = new DAO_Resource();
+        List<GoodsInfo> list = dao.select();
+
+        System.out.println("번호\t상품코드\t상품명\t\t가격\t제조사");
+        System.out.println("--------------------------------------------------------");
+        int no=1;
+        for(GoodsInfo g : list) {
+            System.out.println(no++ + "\t" +  g.toString());
+        }
+    }
+}

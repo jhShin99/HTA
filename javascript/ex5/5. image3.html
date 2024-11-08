@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>select 객체에서 선택한 그림 출력</title>
+  </head>
+  <body>
+    <h3>select 객체에서 선택한 그림 출력</h3>
+    <hr />
+    <div>select를 선택하면 해당 이미지가 보입니다.</div>
+    <form action="">
+      <select id="icon">
+        <option value="../image/basket.png">image1</option>
+        <option value="../image/desert.jpg" selected>image2</option>
+        <option value="../image/hamburger.png">image3</option>
+      </select>
+      <img id="iconImg" src="../image/desert.jpg" width="100px" height="100px" />
+    </form>
+
+    <script>
+      var icon = document.querySelector("#icon");
+      icon.addEventListener("change", show);
+
+      function show() {
+        document.querySelector("#iconImg").src = this.value;
+      }
+    </script>
+  </body>
+</html>

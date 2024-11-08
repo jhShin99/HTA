@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @keyframes sway {
+        0% {
+          background: red;
+          top: 100px;
+          left: 100px;
+        }
+
+        25% {
+          background-color: orange;
+          top: 150px;
+          left: 100px;
+        }
+
+        50% {
+          background-color: yellow;
+          top: 200px;
+          left: 100px;
+        }
+
+        75% {
+          background-color: green;
+          top: 150px;
+          left: 100px;
+        }
+
+        100% {
+          background-color: blue;
+          top: 100px;
+          left: 100px;
+        }
+      }
+
+      #box {
+        position: relative;
+        animation-name: sway;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+      }
+
+      div {
+        width: 100px;
+        height: 100px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+  </body>
+</html>

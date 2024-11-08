@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../js/jquery-3.7.1.js"></script>
+    <script>
+      $(document).ready(function () {
+        setTimeout(function () {
+          let output = "";
+          $("select > option:selected").each(function (index, item) {
+            output += $(this).val() + " ";
+          });
+          alert(output);
+        }, 5000);
+      });
+    </script>
+  </head>
+  <body>
+    <h3>점심메뉴를 5초 안에 선택하세요~</h3>
+    <select size="5" multiple>
+      <option>김밥</option>
+      <option>짜장면</option>
+      <option>냉면</option>
+      <option>비빔밥</option>
+      <option>돈가스</option>
+    </select>
+  </body>
+</html>
