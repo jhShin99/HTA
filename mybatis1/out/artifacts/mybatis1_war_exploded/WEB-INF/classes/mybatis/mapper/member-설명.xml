@@ -30,7 +30,7 @@
       - 컬럼의 이름과 일치하는 setter가 없다면 해당 컬럼의 값은 인스턴스에 저장되지 않습니다.
 -->
   <select id="select" parameterType="String" resultType="Member">
-    select id, password from member22 where id = #{inputid}
+    SELECT id, password FROM member22 WHERE id = #{inputid}
   </select>
 
 <!--

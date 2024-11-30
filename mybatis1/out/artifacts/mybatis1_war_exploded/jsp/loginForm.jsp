@@ -11,12 +11,6 @@
           $(".join").click(function () {
               location.href = "${pageContext.request.contextPath}/joinForm.net";
           });
-
-          const id = '${cookieId}';
-          if (id) {
-              $("#id").val(id);
-              $("#remember").prop('checked', true);
-          }
       })
   </script>
 </head>

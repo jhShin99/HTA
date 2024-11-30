@@ -74,7 +74,7 @@
         <mapper url="file:///c:/model/member.xml/>
 -->
   <mappers>
-    <!-- <mapper resource="org/hta/mybatis/mapper/member.xml"/> -->
-    <mapper url="file:///c:/model/member.xml"/>
+<!--    <mapper url="file:///c:/model/member.xml"/>-->
+    <mapper resource="org/hta/mybatis/mapper/member.xml"/>
   </mappers>
 </configuration>

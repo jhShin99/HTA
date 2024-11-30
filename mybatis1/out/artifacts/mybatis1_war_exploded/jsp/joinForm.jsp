@@ -16,6 +16,7 @@
     <button type="submit" class="join">회원가입</button>
     <button type="reset" class="cancel">취소</button>
   </div>
+  <a href="${pageContext.request.contextPath}/loginForm.net" style="color: blue">로그인 화면</a>
 </form>
 </body>
 </html>

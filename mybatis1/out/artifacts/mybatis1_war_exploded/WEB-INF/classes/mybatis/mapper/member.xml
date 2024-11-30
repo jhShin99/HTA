@@ -16,7 +16,7 @@
   </insert>
 
   <select id="list" resultType="Member">
-    select * from member22 order by id
+    SELECT * FROM member22 ORDER BY id
   </select>
 
   <update id="update" parameterType="Member">
