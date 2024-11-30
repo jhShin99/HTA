@@ -5,7 +5,7 @@ create table comm (
     id varchar2(30) references member(id) on delete cascade,
     content varchar2(200),
     reg_date date,
-    comment_board_num number references board(board_num) on delete cascade, -- comm 테이블이 참조
+    comment_board_num number references boards(board_num) on delete cascade, -- comm 테이블이 참조
     comment_re_lev number(1) check(comment_re_lev in (0,1,2)), --원문이면 0 답글이면 1
     comment_re_seq number, -- 원문이면 0
     comment_re_ref number -- 원문은 자신 글번호, 답글이면 원문 글번호

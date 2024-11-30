@@ -18,7 +18,7 @@ CREATE TABLE BOARDS
 );
 
 -- 게시글에 달린 댓글의 개수를 구하기 위한 과정입니다.
-select * from board;
+select * from boards;
 delete from boards;
 select * from comm;
 
