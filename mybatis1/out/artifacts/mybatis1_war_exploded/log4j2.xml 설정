@@ -1,0 +1,67 @@
+1. 로그(Log)란 프로그램 개발이나 운영 시 발생하는 문제점을 추적하거나 운영 상태를 모니터링하기 위한 텍스트입니다.
+
+    (1)log4j란
+       - log4j는 프로그램을 작성하는 도중에 로그를 남기기 위해 사용되는 자바 기반 로깅 유틸리티입니다.
+       - 디버그용 도구로 주로 사용되고 있습니다.
+       - log4j는 높은 등급에서 낮은 등급으로의 로그 레벨을 가지고 있습니다.
+       - 설정 파일에 대상별(자바에서는 패키지)로 레벨을 지정이 가능하고 그 등급 이상의 로그만 저장하는 방식입니다.
+       - 이 파일을 자바 클래스 경로에 두어야 합니다.
+
+    (2) 로그의 출력 등급 설정(아래의 등급은 위의 등급을 포함합니다. TRACE로 설정하면 모든 로그를 출력합니다.)
+
+                출력 등급       설명
+        위 등급  FATAL          애플레케이션을 중지해야 할 심각한 오류
+                ERROR          오류가 발생했지만 애플리케이션은 계속 실행할 수 있는 상태
+                WARN           잠재적인 위험을 안고 있는 상태
+                INFO           애플리케이션의 주요 실행 정보
+                DEBUG          애플리케이션의 내부 실행 상황을 추적해 볼 수 있는 상세 정보
+
+        아래등급 TRACE          디버그보다 더 상세한 정보
+
+    (3) Logger
+        * 실제 로그 기능을 수행하는 객체로 각 Logger마다 Name을 부여하여 사용합니다.
+        * 예)
+             <Loggers>
+             <Root level="debug">
+                <AppenderRef ref = "cponsole"/>
+             </Root>
+        설명) root 로거의 출력 등급을 DEBUG로 설정하였습니다.
+             - 루트 로거란 최상위 로거를 가리킵니다.
+             - 하위 로거들은 항상 부모의 출력 등급을 상속받습니다.
+             - 하위 로거들의 등급을 별도로 설정하지 않음년 루트 로거의 출력 등급과 같은 DEBUG가 됩니다.
+
+        * 특정 패키지의 클래스에 대해 로그의 출력 등급 설정하기
+          - 루트 로거에서 정의한 등급보다 다른 등급의 로그를 출력하고 싶다면 하위 로거에 대한 별도의 등급을 지정하면 됩니다.
+          예) <Logger name="org.hta.mybatis.member" level="trace">
+                <AppenderRef ref="console2"/>
+              </Logger>
+          설명) name 속성은 자바의 패키지 이름 또는 마이바티스의 namespace
+
+    (4) ① <Appenders>는 애플리케이션 로그를 기록할 대상을 정의하는 엘리먼트 입니다.
+        ② <Console>는 애플리케이션의 로그를 터미널(콘솔)에 출력합니다.
+           ☞ 출력 대상은 기본적으로 System.out(표준 출력) 또는 System.err(표준 오류) 중 하나를 선택할 수 있습니다.
+           ☞ 속성으로 name과 target이 있습니다.
+              - name 속성은 Appender의 이름을 정의합니다.
+                <Loggers>에서 참조할 때 사용됩니다.
+              - target 속성은 로그를 출력할 대상입니다.
+                SYSTEM_OUT: 표준 출력 (System.out) - 검정 글자색
+                SYSTEM_ERR: 표준 오류 (System.err) - 빨간 글자색
+
+              예) <Appenders>
+                      <Console name="console" target="SYSTEM_OUT">
+                          <PatternLayout pattern = "Root : %5p [%c] - %m%n"/>
+                      </Console>
+                  </Appenders>
+              설명) <Console name = "console" target="SYSTEM_OUT">
+                    - 표준 출력 장치인 모니터로 출력합니다.
+              <PatternLayout>은 로그 메시지를 개발자 또는 운영자가 이해하기 쉬운 형식으로 출력합니다.
+              ☞ 텍스트 기반 로그의 레이아웃(형식)을 정의합니다.
+              ☞ 속성으로 pattern이 있습니다.
+                 - 로그 메시지의 출력 형식을 정의합니다.
+                 - 다양한 패턴 변환자를 사용해 로그 내용을 구성할 수 있습니다.
+                 예) <PatternLayout = "Root    : %5p [%c] - %m%n"/>
+                     - pattern="Root    : %5p [%c] - %m%n    : 출력형식
+                     - 출력형식은 "" 안에 지정합니다.
+                     - Root      : -> 문자열 그대로 출력
+                       %5p         -> 로그의 우선순위(레벨)를 5자리로 출력합니다(TRACE, DEBUG, INFO, WARN, ERROR, FATAL)
+                       [%c]        -> 로그 메시지를 생성한 로거(Logger)의 이름을 출력합니다.

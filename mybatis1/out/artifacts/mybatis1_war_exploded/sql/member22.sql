@@ -1,0 +1,6 @@
+CREATE TABLE MEMBER22 (
+    ID VARCHAR2(10) PRIMARY KEY,
+    PASSWORD VARCHAR2(10)
+);
+
+-- admin / 1234 추가하고 사용자 5명 추가하기
