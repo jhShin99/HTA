@@ -8,7 +8,7 @@ public class BreakExample1 {
             for (int col = 0; col < 5; col++) {
                 if (row == 1 && col == 3)
                     break;
-                System.out.println("(" + row + ", " + col + ")");
+                System.out.println("(" + row + ", " + col + ")"); 
             }
         }
         System.out.println("끝.");
