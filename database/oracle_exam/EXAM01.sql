@@ -6,8 +6,8 @@ DECLARE
 BEGIN
     VEMPNO := 7788;
     VENAME := 'SCOTT';
-    DBMS_OUTPUT.PUT_LINE('»ç¹ø/ÀÌ¸§');
+    DBMS_OUTPUT.PUT_LINE('ï¿½ï¿½ï¿½/ï¿½Ì¸ï¿½');
     DBMS_OUTPUT.PUT_LINE('-------------');
-    DBMS_OUTPUT.PUT_LINE(VEMPNO || '/' || VENAME);
+    DBMS_OUTPUT.PUT_LINE(VEMPNO || '/' || VENAME) ;
 END;
 /
