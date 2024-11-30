@@ -39,8 +39,7 @@ public class LoginProAction implements Action {
             request.setAttribute("message", "ID가 존재하지 않습니다.");
             request.setAttribute("url", "history.back()");
         }
-
-
+        
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("jsp/message_modal.jsp");
