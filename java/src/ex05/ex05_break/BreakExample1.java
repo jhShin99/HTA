@@ -11,6 +11,6 @@ public class BreakExample1 {
                 System.out.println("(" + row + ", " + col + ")");
             }
         }
-        System.out.println("끝.");
+        System.out.println("끝.") ;
     }
 }
