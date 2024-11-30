@@ -16,7 +16,7 @@ import java.util.Calendar;
  */
 
 
-public class ServletTest extends HttpServlet {
+public class ServletTest extends HttpServlet  {
     private static final long serialVersionUID = 1L;
 
     //doGet메서드를 정의하는 부분입니다.
