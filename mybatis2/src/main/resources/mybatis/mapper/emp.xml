@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.hta.emp">
+  <!-- parameterType="java.util.Map" 인 경우 #{start}에서 start는 map의 key에 해당합니다. -->
+  <select id="termlist" parameterType="java.util.Map" resultType="emp">
+    SELECT *
+    FROM emp
+    WHERE hiredate between #{start} AND #{end}
+  </select>
+
+  <!--
+    parameterType="map"에서 map은 java.util.Map의 별칭입니다.
+    <where> 요소는 조건에 따라 where 절을 추가합니다.
+   -->
+  <select id="termlist2" parameterType="map" resultType="emp">
+    SELECT *
+    FROM emp
+    <where>
+      <if test='start != "" and end != ""'>
+        hiredate BETWEEN #{start} AND #{end}
+      </if>
+    </where>
+  </select>
+
+  <select id="termlist3" parameterType="map" resultType="emp">
+    SELECT *
+    FROM emp
+    <where>
+      <if test='start != "" and end != ""'>
+        hiredate BETWEEN #{start} AND #{end}
+      </if>
+      <if test='deptno != ""'>
+        AND deptno = #{deptno}
+      </if>
+    </where>
+  </select>
+</mapper>
