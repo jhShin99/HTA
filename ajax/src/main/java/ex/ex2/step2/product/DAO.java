@@ -27,9 +27,9 @@ public class DAO {
     public JsonArray getList() {
         JsonArray array = new JsonArray();
         String sql = """
-                select *
-                from products
-                order by id
+                SELECT *
+                FROM products
+                ORDER BY id
                 """;
         //데이터 베이스 작업에 필요한 인터페이스들의 레퍼런스 변수를 선언합니다.
         try (
@@ -54,8 +54,8 @@ public class DAO {
 
     public int insert(DTO vo) {
         String sql = """
-                insert into products
-                values((select nvl(max(id),0)+1 from PRODUCTS), ?, ?, ?)
+                INSERT INTO products
+                VALUES ((SELECT nvl(MAX(id),0)+1 FROM products), ?, ?, ?)
                 """;
         int result = 0;
         try (
@@ -74,8 +74,8 @@ public class DAO {
 
     public int delete(int id) {
         String sql = """
-                delete from products
-                where id = ?
+                DELETE FROM products
+                WHERE id = ?
                 """;
         int result = 0; //초기값
         try (
@@ -92,9 +92,9 @@ public class DAO {
 
     public int update(DTO vo) {
         String sql = """
-                update products
-                set name=?, price=?, maker=?
-                where id=?
+                UPDATE products
+                SET name=?, price=?, maker=?
+                WHERE id=?
                 """;
         int result = 0;
         try (

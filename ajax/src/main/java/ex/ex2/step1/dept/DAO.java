@@ -31,9 +31,9 @@ public class DAO {
 
     public JsonArray getList_lib() {
         String sql = """
-                select *
-                from dept
-                order by deptno
+                SELECT *
+                FROM dept
+                ORDER BY deptno
                 """;
         JsonArray array = new JsonArray();
         try (
@@ -57,9 +57,9 @@ public class DAO {
 
     public JsonArray getList_lib_search(int deptno) {
         String sql = """
-                select *
-                from dept
-                where deptno = ?
+                SELECT *
+                FROM dept
+                WHERE deptno = ?
                 """;
 
         JsonArray array = new JsonArray();
