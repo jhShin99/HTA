@@ -23,14 +23,14 @@ public class Term3 implements Action {
         m.put("deptno", request.getParameter("deptno"));
 
         EmpDAO dao = new EmpDAO();
-        List<Emp> list = dao.getTermList2(m);
+        List<Emp> list = dao.getTermList3(m);
 
         ActionForward forward = new ActionForward();
         request.setAttribute("list", list);
         request.setAttribute("start", m.get("start"));
         request.setAttribute("end", m.get("end"));
         request.setAttribute("deptno", m.get("deptno"));
-        forward.setPath("_1.where/list2.jsp");
+        forward.setPath("_1.where/list1.jsp");
         forward.setRedirect(false);
 
         return forward;

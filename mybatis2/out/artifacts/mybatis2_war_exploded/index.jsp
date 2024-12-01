@@ -5,9 +5,8 @@
   <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="${pageContext.request.contextPath}/_1.where/NewFile.jsp">NewFile.jsp</a><br><br>
+<a href="${pageContext.request.contextPath}/_1.where/NewFile2.jsp">NewFile2.jsp</a><br><br>
+<a href="${pageContext.request.contextPath}/_1.where/NewFile3.jsp">NewFile3.jsp</a><br><br>
 </body>
 </html>
