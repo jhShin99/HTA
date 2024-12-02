@@ -40,7 +40,7 @@ public class FrontController extends HttpServlet {
             case "/check.emp":
                 action = new Check();
                 break;
-            case "/checkout.emp":
+            case "/checkcount.emp":
                 action = new CheckCount();
                 break;
         }

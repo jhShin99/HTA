@@ -1,0 +1,23 @@
+<Configuration>
+  <Appenders>
+    <Console name="console" target="SYSTEM_ERR">
+      <PatternLayout pattern="Root     :%5p  [%c] - %m%n"/>
+    </Console>
+
+    <Console name="console2" target="SYSTEM_OUT">
+      <PatternLayout pattern="Member  :%6p  [%c] - %m%n"/>
+    </Console>
+  </Appenders>
+
+  <Loggers>
+
+    <Root level="warn">
+      <AppenderRef ref="console"/>
+    </Root>
+
+    <!-- additivity="false" : 부모 전달 안됨 -->
+    <Logger name="org.hta.emp" level="trace" additivity="false">
+      <AppenderRef ref="console2"/>
+    </Logger>
+  </Loggers>
+</Configuration>

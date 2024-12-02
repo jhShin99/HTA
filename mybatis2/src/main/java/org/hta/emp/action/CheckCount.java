@@ -21,7 +21,7 @@ public class CheckCount implements Action {
 
         //선택없이 보내면 deptnos는 null입니다.
         String[] deptnos = request.getParameterValues("deptno");
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("deptnos", deptnos);
 
         List<Emp> list = dao.getCheck(map);
@@ -29,7 +29,7 @@ public class CheckCount implements Action {
         List<Map<String, Integer>> listCount = dao.getCount(map);
 
         ActionForward forward = new ActionForward();
-        request.setAttribute("listCount", listCount);
+        request.setAttribute("listcount", listCount);
         request.setAttribute("list", list);
         request.setAttribute("deptnos", map.get("deptnos"));
         forward.setPath("_2.foreach/listcount.jsp");

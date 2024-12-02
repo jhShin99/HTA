@@ -52,7 +52,7 @@
     SELECT *
     FROM emp
     <if test="deptnos != null">
-      WHERE deptno in
+      WHERE deptno IN
       <foreach collection="deptnos" item="data"
                open = "("
                separator = ","
@@ -60,6 +60,22 @@
         #{data}
       </foreach>
     </if>
+    ORDER BY deptno
+  </select>
+
+  <select id="deptnocheckcount" parameterType="map" resultType="map">
+    SELECT deptno, COUNT(deptno) cnt
+    FROM EMP
+    <if test="deptnos != null">
+      WHERE deptno IN
+      <foreach collection="deptnos" item="data"
+               open = "("
+               separator = ","
+               close=")">
+        #{data}
+      </foreach>
+    </if>
+    GROUP BY deptno
     ORDER BY deptno
   </select>
 </mapper>
