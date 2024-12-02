@@ -20,6 +20,18 @@
               $("table").remove(); // table 요소 제거합니다.
               $(".container div").remove(); // div 요소 중 특정 클래스만 제거합니다.
 
+              /**
+               * $.ajax(object)
+               * ① url : 요청 전송 url,
+               * ② type : 전송 방식 (get(기본) 또는 post),
+               * ③ data : 전송할 자료들,
+               * ④ cache : false를 설정하면 jQuery는 Ajax 요청에 대해 브라우저의 캐시를 사용하지 않도록 합니다.
+               *            이렇게 하면 매번 서버로부터 최신 데이터를 가져오며, 캐시된 응답을 사용하지 않습니다.
+               * ⑤ dataType : return data의 Type(ajax 성공 후 돌려받은 자료의 형을 정의 -"json","xml","html"),
+               * ⑥ success : HTTP 요청이 성공한 경우 실행할 함수 정의,
+               * ⑦ error : HTTP 요청이 실패한 경우 실행할 함수 정의
+               * ⑧ complete : 요청의 실패, 성공과 상관 없이 완료 될 경우 실행할 함수 정의
+               */
               $.ajax({
                   url: "${pageContext.request.contextPath}/get_name", //요청 전송 url
                   dataType: "json", // return data의 Type(ajax 성공 후 돌려받은 자료형을 정의)
