@@ -23,4 +23,14 @@ public class MessageBeanImpl implements MessageBean {
             e.printStackTrace();
         }
     }
+
+    public void setOutputter(Outputter outputter) {
+        this.outputter = outputter;
+        System.out.println("MessageBeanImpl의 setOutputter()에서 값 저장");
+    } // setter DI 설정
+
+    public void setGreeting(String greeting) {
+        this.greeting = greeting;
+        System.out.println("MessageBeanImpl의 setGreeting()에서 값 저장");
+    } // setter DI 설정
 }

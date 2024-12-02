@@ -7,6 +7,11 @@ public class HelloApp {
     }
 
     public static void main(String[] args) {
-
+        MessageBeanImpl messageBean = new MessageBeanImpl("Spring");
+        FileOutputter fileOutputter = new FileOutputter("filepath");
+        fileOutputter.setFilePath("filePath");
+        messageBean.setGreeting("안녕하세요!");
+        messageBean.setOutputter(fileOutputter);
+        messageBean.sayHello();
     }
 }
