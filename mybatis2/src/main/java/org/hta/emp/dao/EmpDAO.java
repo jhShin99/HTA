@@ -28,10 +28,10 @@ public class EmpDAO {
         return session;
     }
 
-    public List<Emp> getTermList(Map<String, String> m) {
+    public List<Emp> getTermList(Map<String, String> map) {
         List<Emp> list = null;
         try (SqlSession session = getSession()) {
-            list = session.selectList("org.hta.emp.termlist", m);
+            list = session.selectList("org.hta.emp.termlist", map);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -39,10 +39,10 @@ public class EmpDAO {
         return list;
     }
 
-    public List<Emp> getTermList2(Map<String, String> m) {
+    public List<Emp> getTermList2(Map<String, String> map) {
         List<Emp> list = null;
         try (SqlSession session = getSession()) {
-            list = session.selectList("org.hta.emp.termlist2", m);
+            list = session.selectList("org.hta.emp.termlist2", map);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -50,12 +50,34 @@ public class EmpDAO {
         return list;
     }
 
-    public List<Emp> getTermList3(Map<String, String> m) {
+    public List<Emp> getTermList3(Map<String, String> map) {
         List<Emp> list = null;
         try (SqlSession session = getSession()) {
-            list = session.selectList("org.hta.emp.termlist3", m);
+            list = session.selectList("org.hta.emp.termlist3", map);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Emp> getCheck(Map<String, Object> map) {
+        List<Emp> list = null;
+        try (SqlSession session = getSession()) {
+            list = session.selectList("org.hta.emp.deptnocheck", map);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Map<String, Integer>> getCount(Map<String, Object> map) {
+        List<Map<String, Integer>> list = null;
+        try (SqlSession session = getSession()) {
+            list = session.selectList("org.hta.emp.deptnocheckcount", map);
+        } catch (Exception e) {
+            System.out.println();
             e.printStackTrace();
         }
         return list;

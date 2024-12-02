@@ -6,9 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.hta.emp.action.Term;
-import org.hta.emp.action.Term2;
-import org.hta.emp.action.Term3;
+import org.hta.emp.action.*;
 
 import java.io.IOException;
 
@@ -39,7 +37,12 @@ public class FrontController extends HttpServlet {
             case "/term3.emp":
                 action = new Term3();
                 break;
-
+            case "/check.emp":
+                action = new Check();
+                break;
+            case "/checkcount.emp":
+                action = new CheckCount();
+                break;
         }
 
         forward = action.execute(request, response);
