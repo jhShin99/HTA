@@ -1,5 +1,6 @@
 package com.naver.myhome1.sample5_문제;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
@@ -8,6 +9,7 @@ import java.io.IOException;
 @Component
 public class FileOutputter implements Outputter {
 
+    @Value("${filepath}")
     private String filePath; // 출력파일 경로와 파일이름을 저장할 변수
 
     public FileOutputter() {

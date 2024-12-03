@@ -14,10 +14,8 @@ public class MessageBeanImpl implements MessageBean {
     @Value("${greeting}")
     private String greeting;
 
-
     private Outputter outputter;
 
-    @Autowired
     public MessageBeanImpl(Outputter outputter) {
         this.outputter = outputter;
         System.out.println("MessageBeanImpl 생성자 입니다.");
