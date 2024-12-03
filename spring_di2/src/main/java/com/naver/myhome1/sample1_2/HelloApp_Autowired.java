@@ -1,6 +1,5 @@
 package com.naver.myhome1.sample1_2;
 
-import com.naver.myhome1.sample1_1.MessageMultiple;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class HelloApp_Autowired {
