@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
  * @Autowired와 @Qualifier을 한 번에 처리할 수 있는 것이 @Resource입니다.
  */
 
-@Component("m2")
+@Component
 public class MessageMultiple {
 
     private MessageBean messageBean;
