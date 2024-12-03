@@ -18,4 +18,22 @@
       <value>안녕하세요!</value>
     </property>
   </bean>
+
+  <bean id="m3" class="com.naver.myhome1.sample5.MessageBeanImpl">
+    <constructor-arg>
+      <value>Spring</value>
+    </constructor-arg>
+    <property name="greeting">
+      <value>Hello!</value>
+    </property>
+    <property name="outputter">
+      <ref bean="outputter"/>
+    </property>
+  </bean>
+
+  <bean id="outputter" class="com.naver.myhome1.sample5.FileOutputter">
+    <property name="filePath">
+      <value>out2.txt</value>
+    </property>
+  </bean>
 </beans>

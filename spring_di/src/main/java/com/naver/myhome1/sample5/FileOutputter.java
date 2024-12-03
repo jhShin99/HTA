@@ -7,7 +7,7 @@ public class FileOutputter implements Outputter {
 
     private String filePath; // 출력파일 경로와 파일이름을 저장할 변수
 
-    public FileOutputter(String filePath) {
+    public FileOutputter() {
         System.out.println("여기는 FileOutputter 생성자입니다.");
     }
 

@@ -12,6 +12,8 @@ public class HelloApp_java {
         // argument로 지정된 이름의 bean 인스턴스를 반환합니다.
         // applicationContext.xml에서 id가 "m3"인 bean을 가져옵니다.
         MessageBean bean = (MessageBean) ctx.getBean("m3");
+        FileOutputter outputter = new FileOutputter();
+        outputter.setFilePath("out.txt");
 
         bean.sayHello(); //메서드 호출합니다.
 
