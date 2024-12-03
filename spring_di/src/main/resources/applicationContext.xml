@@ -10,6 +10,9 @@
   <bean id="m1" class="com.naver.myhome1.sample3.MessageBeanKo"/>
 
   <bean id="m2" class="com.naver.myhome1.sample4.MessageBeanImpl">
+
+    <!-- 기본생성자는 안적어도 됨 -->
+    <!-- public MessageBeanImpl("Spring") -->
     <constructor-arg>
         <value>Spring</value>
     </constructor-arg>
@@ -23,15 +26,21 @@
     <constructor-arg>
       <value>Spring</value>
     </constructor-arg>
+
+    <!-- setGreeting("Hello!") -->
     <property name="greeting">
       <value>Hello!</value>
     </property>
+
+    <!-- setOutputter(new Outputter()) -->
     <property name="outputter">
       <ref bean="outputter"/>
     </property>
   </bean>
 
   <bean id="outputter" class="com.naver.myhome1.sample5.FileOutputter">
+
+    <!-- setFilePath("out2.txt") -->
     <property name="filePath">
       <value>out2.txt</value>
     </property>
