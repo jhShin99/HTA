@@ -1,4 +1,4 @@
-package com.naver.myhome1.sample1_2;
+package com.naver.myhome1.sample3;
 
 public interface MessageBean {
 

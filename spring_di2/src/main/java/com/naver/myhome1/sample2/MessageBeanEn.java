@@ -1,4 +1,4 @@
-package com.naver.myhome1.sample1_2;
+package com.naver.myhome1.sample2;
 
 public class MessageBeanEn implements MessageBean {
 

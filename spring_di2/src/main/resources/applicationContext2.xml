@@ -10,8 +10,9 @@
     @Autowired, @Qualifier, @Resource annotation 인식합니다. -->
   <context:annotation-config/>
 
-  <bean id="m" class="com.naver.myhome1.sample1_2.MessageBeanEn"/>
-  <bean id="m2" class="com.naver.myhome1.sample1_2.MessageMultiple">
+  <bean id="m" class="com.naver.myhome1.sample2.MessageBeanEn"/>
+  <bean id="m1" class="com.naver.myhome1.sample2.MessageBeanKo"/>
+  <bean id="m2" class="com.naver.myhome1.sample2.MessageMultiple">
     <!-- @Autowired로 자동 주입되어 생략합니다.
     <property name="bean">
       <ref bean="m"/>
