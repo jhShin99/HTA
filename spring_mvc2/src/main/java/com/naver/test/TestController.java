@@ -16,7 +16,7 @@ public class TestController {
 
     @PostMapping("/joinProcess")
     public String joinProcess(@RequestParam("id") String id,
-                              @RequestParam("password") String password,
+                              @RequestParam("pass") String password,
                               @RequestParam("jumin1") String jumin1,
                               @RequestParam("jumin2") String jumin2,
                               @RequestParam("email") String email,
