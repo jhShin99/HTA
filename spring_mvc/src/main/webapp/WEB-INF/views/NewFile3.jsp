@@ -3,6 +3,7 @@
 <html>
 <head>
   <title>Title</title>
+  <link rel="stylesheet" href="css/test.css">
 </head>
 <body>
 NewFile3.jsp 입니다.
