@@ -6,7 +6,7 @@
   <title>입력 폼 입니다.</title>
 </head>
 <body>
-<form name="myform" action="login_ok1.do" method="post">
+<form name="myform" action="login_ok2.do" method="post">
   <h3>loginForm.jsp</h3>
   <b>아이디</b>
   <input type="text" name="id" placeholder="Enter id" required>
