@@ -7,7 +7,7 @@
 </head>
 <body>
 <form method="post" action="param3.do">
-  <h3>paramForm1.jsp</h3>
+  <h3>paramForm3.jsp</h3>
   <b>나이</b>
   <input type="text" name="age" required placeholder="Enter age">
   <div class="clearfix">

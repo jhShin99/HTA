@@ -1,4 +1,4 @@
-package com.naver.myhome._2_param;
+package com.naver.myhome._2_RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -87,6 +87,19 @@ public class ParamController1 {
             , HttpServletRequest request) {
         model.addAttribute("url", request.getRequestURI());
         model.addAttribute("age", age);
+        return "param/list1";
+    }
+
+    @GetMapping(value = "/param5")
+    public String param5() {
+        return "param/paramForm5";
+    }
+
+    // int age : 파라미터와 같은 이름의 변수에 저장할 경우 이와 같이 작성하면 됩니다.
+    @PostMapping(value = "/param5.do")
+    public String param5(int age, Model model, HttpServletRequest request) {
+        model.addAttribute("age", age);
+        model.addAttribute("url", request.getRequestURI());
         return "param/list1";
     }
 }

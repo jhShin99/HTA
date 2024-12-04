@@ -6,9 +6,10 @@
 
 </head>
 <body>
-<form method="post" action="param4.do">
-  <h3>paramForm4.jsp</h3>
+<form method="get" action="param6.do">
+  <h3>paramForm6.jsp</h3>
   <b>나이</b>
+  <input type="text" name="age" required placeholder="Enter age">
   <input type="text" name="age" required placeholder="Enter age">
   <div class="clearfix">
     <button type="submit" class="submitbtn">전송</button>
