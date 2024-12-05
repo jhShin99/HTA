@@ -1,6 +1,6 @@
 -- CONN system/1234
 CREATE USER boot IDENTIFIED BY tiger;
-GRANT RESOURCE, CONNECT TO boot1;
+GRANT RESOURCE, CONNECT TO boot;
 
 DROP TABLE member CASCADE CONSTRAINTS;
 -- 1. index.jsp에서 시작 합니다.
