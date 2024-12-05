@@ -26,7 +26,7 @@ button {
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
-    cursor: pointer; /* ¼Õ°¡¶ô Ä¿¼­ ¸ð¾ç */
+    cursor: pointer; 
     width: 100%;
     opacity: 0.9;
      border-radius:2%;
@@ -40,7 +40,7 @@ button:focus{
    outline:none;
 }
 
-/* Ãë¼Ò ¹öÆ°*/
+/* ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°*/
 .join{
     padding: 14px 20px;
     background-color: #f44336;
