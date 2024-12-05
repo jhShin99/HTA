@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * @Component를 이용해서 스프링 컨테이너가 해당 클래스 객체를 생성하도록 설정할 수 있지만
@@ -64,8 +65,16 @@ public class MemberController {
     }
 
     @PostMapping("/joinProcess")
-    public String joinProcess(@ModelAttribute Member member) {
+    public String joinProcess(@ModelAttribute Member member, RedirectAttributes rattr) {
         memberService.insert(member);
-        return "redirect:/member/login";
+        /**
+         * 스프링에서 제공하는 RedirectAttributes는 기존의 Servlet에서 사용되던
+         * response.sendRedirect()를 사용할 때와 동일한 용도로 사용합니다.
+         * 리다이렉트로 전송하면 파라미터를 전달하고자 할 때 addAttribute()나 addFlashAttribute()를 사용합니다.
+         * 예) response.sendRedirect("/test?result=1");
+         *     => rattr.addAttribute("result", 1)
+         */
+        rattr.addFlashAttribute("result", "joinSuccess");
+        return "redirect:login";
     }
 }
