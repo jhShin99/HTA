@@ -3,7 +3,6 @@
 <head>
   <title>입력 폼 입니다.</title>
   <link rel="stylesheet" href="css/form.css">
-
 </head>
 <body>
 <form method="post" action="param1.do">
