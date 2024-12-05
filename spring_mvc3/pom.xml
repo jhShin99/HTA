@@ -78,7 +78,6 @@
 			<version>11.0.1</version>
 		</dependency>
 
-
 		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
 		<dependency>
 			<groupId>org.webjars</groupId>

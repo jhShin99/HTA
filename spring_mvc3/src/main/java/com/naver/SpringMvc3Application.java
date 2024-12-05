@@ -1,4 +1,4 @@
-package com.example.spring_mvc3;
+package com.naver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
