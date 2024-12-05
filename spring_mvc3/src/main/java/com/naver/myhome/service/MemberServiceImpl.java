@@ -24,12 +24,14 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void insert(Member m) {
-
+        dao.insert(m);
     }
 
     @Override
     public int isId(String id) {
-        return 0;
+        Member rmember = dao.isId(id);
+        return (rmember == null) ? -1 : 1; //-1은 아이디가 존재하지 않는 경우
+                                           // 1은 아이디가 존재하는 경우
     }
 
     @Override

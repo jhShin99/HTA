@@ -4,8 +4,15 @@
 <html>
 <head>
   <link rel="stylesheet" href="/css/login.css">
-  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="/js/jquery-3.7.1.min.js"></script>
   <title>로그인 페이지</title>
+  <script>
+    $(function() {
+        $(".join").click(function() {
+            location.href = "/member/join";
+        });
+    })
+  </script>
 </head>
 <body>
 <form name="loginProcess" action="/member/loginProcess" method="post">

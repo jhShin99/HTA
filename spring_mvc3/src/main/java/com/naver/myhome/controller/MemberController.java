@@ -1,14 +1,13 @@
 package com.naver.myhome.controller;
 
+import com.naver.myhome.domain.Member;
 import com.naver.myhome.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -51,5 +50,22 @@ public class MemberController {
         }
         mv.setViewName("member/loginForm");
         return mv;
+    }
+
+    @GetMapping(value = "/join")
+    public String join() {
+        return "member/joinForm";
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/idcheck")
+    public int idcheck(String id) {
+        return memberService.isId(id);
+    }
+
+    @PostMapping("/joinProcess")
+    public String joinProcess(@ModelAttribute Member member) {
+        memberService.insert(member);
+        return "redirect:/member/login";
     }
 }
