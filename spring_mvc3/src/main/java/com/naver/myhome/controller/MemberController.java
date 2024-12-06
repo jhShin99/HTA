@@ -3,6 +3,8 @@ package com.naver.myhome.controller;
 import com.naver.myhome.domain.Member;
 import com.naver.myhome.service.MemberService;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,38 @@ public class MemberController {
         }
         mv.setViewName("member/loginForm");
         return mv;
+    }
+
+    //로그인 처리
+    @PostMapping(value = "/loginProcess")
+    public String loginProcess(
+            String id,
+            String password,
+            @RequestParam(defaultValue = "") String remember,
+            HttpServletResponse response,
+            HttpSession session,
+            RedirectAttributes rattr) {
+
+        int result = memberService.isId(id, password);
+        logger.info("결과 : {}", result);
+
+        if (result == 1) {
+            //로그인 성공
+            session.setAttribute("id", id);
+            Cookie savecookie = new Cookie("saveid", id);
+            if (!remember.equals("")) { //remember 선택한 경우
+                savecookie.setMaxAge(60*60*24); //1일
+                logger.info("쿠키저장 : 60*60*24");
+            } else {
+                logger.info("쿠키저장 : 0");
+                savecookie.setMaxAge(0);
+            }
+            response.addCookie(savecookie);
+            return "redirect:/board/list"; //localhost:8088/board/list
+        } else {
+            rattr.addFlashAttribute("result", result);
+            return "redirect:login"; //localhost:8088/member/login
+        }
     }
 
     @GetMapping(value = "/join")

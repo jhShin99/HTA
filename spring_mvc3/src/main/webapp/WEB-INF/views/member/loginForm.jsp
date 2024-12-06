@@ -7,11 +7,20 @@
   <script src="/js/jquery-3.7.1.min.js"></script>
   <title>로그인 페이지</title>
   <script>
-    $(function() {
-        $(".join").click(function() {
-            location.href = "/member/join";
-        });
-    })
+      const result = "${result}"
+      if (result == 'joinSuccess') {
+          alert("회원가입을 축하합니다.");
+      } else if (result == '0') {
+          alert("비밀번호가 일치하지 않습니다.");
+      } else if (result == '-1') {
+          alert("아이디가 존재하지 않습니다.");
+      }
+
+      $(function () {
+          $(".join").click(function () {
+              location.href = "/member/join";
+          });
+      })
   </script>
 </head>
 <body>
@@ -29,7 +38,7 @@
   <label>
     <input type="checkbox" name="remember" style="margin-bottom: 15px"
     <c:if test="${!empty saveid}">
-            checked
+           checked
     </c:if>
     > Remember me
   </label>
