@@ -14,3 +14,12 @@ CREATE TABLE BOARD
     BOARD_DATE      DATE, -- 글의 작성 날짜
     PRIMARY KEY(BOARD_NUM)
 );
+
+SELECT *
+FROM (SELECT ROWNUM rnum, b.*
+      FROM (SELECT * FROM board
+            ORDER BY board_re_ref DESC,
+            board_re_seq ASC) b
+      WHERE ROWNUM <= #{end}
+      )
+WHERE rnum >= #{start} AND rnum <= #{end}
