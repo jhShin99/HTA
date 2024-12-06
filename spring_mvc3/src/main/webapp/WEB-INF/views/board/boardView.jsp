@@ -20,25 +20,25 @@
         <div>글쓴이</div>
       </td>
       <td>
-        <div>${boarddata.board_name}</div>
+        <div>${boarddata.BOARD_NAME}</div>
       </td>
     </tr>
     <tr>
       <td>
         <div>제목</div>
       </td>
-      <td><c:out value="${boarddata.board_subject}"/></td>
+      <td><c:out value="${boarddata.BOARD_SUBJECT}"/></td>
     </tr>
     <tr>
       <td>
         <div>내용</div>
       </td>
       <td style="padding-right: 0px">
-        <textarea class="form-control" rows="5" readonly>${boarddata.board_content}</textarea>
+        <textarea class="form-control" rows="5" readonly>${boarddata.BOARD_CONTENT}</textarea>
       </td>
     </tr>
 
-    <c:if test="${boarddata.board_re_lev==0}">
+    <c:if test="${boarddata.BOARD_RE_LEV==0}">
       <%-- 원문글인 경우에만 첨부파일을 추가 할 수 있습니다. --%>
       <tr>
         <td>
@@ -46,15 +46,15 @@
         </td>
 
           <%-- 파일을 첨부한 경우 --%>
-        <c:if test="${!empty boarddata.board_file}">
+        <c:if test="${!empty boarddata.BOARD_FILE}">
           <td>
             <img src="${pageContext.request.contextPath}/image/down.png" width="10px">
-            <a href="down?filename=${boarddata.board_file}">${boarddata.board_file}</a>
+            <a href="down?filename=${boarddata.BOARD_FILE}">${boarddata.BOARD_FILE}</a>
           </td>
         </c:if>
 
           <%-- 파일을 첨부하지 않은 경우 --%>
-        <c:if test="${empty boarddata.board_file}">
+        <c:if test="${empty boarddata.BOARD_FILE}">
           <td></td>
         </c:if>
       </tr>
@@ -62,8 +62,8 @@
 
     <tr>
       <td colspan="2" class="center">
-        <c:if test="${boarddata.board_name == id || id == 'admin'}">
-          <a href="modify?num=${boarddata.board_num}">
+        <c:if test="${boarddata.BOARD_NAME == id || id == 'admin'}">
+          <a href="modify?num=${boarddata.BOARD_NUM}">
             <button class="btn btn-info">수정</button>
           </a>
           <%-- href의 주소를 #으로 설정합니다. --%>
@@ -76,7 +76,7 @@
         <a href="list">
           <button class="btn btn-warning">목록</button>
         </a>
-        <a href="reply?num=${boarddata.board_num}">
+        <a href="reply?num=${boarddata.BOARD_NUM}">
           <button class="btn btn-success">답변</button>
         </a>
       </td>

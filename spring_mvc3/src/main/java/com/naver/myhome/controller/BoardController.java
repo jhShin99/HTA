@@ -9,10 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -71,9 +68,9 @@ public class BoardController {
      */
     @PostMapping("/add")
     public String add(Board board, HttpServletRequest request) throws Exception {
-        String saveFolder = request.getSession().getServletContext().getRealPath("resources/updload");
+ ;
+        String saveFolder = request.getSession().getServletContext().getRealPath("resources/upload");
         MultipartFile uploadfile = board.getUploadfile();
-
         if (!uploadfile.isEmpty()) {
             String fileDBName = boardService.saveUploadedFile(uploadfile, saveFolder);
             board.setBOARD_FILE(fileDBName); // 바뀐 파일명으로 저장
@@ -83,5 +80,45 @@ public class BoardController {
         boardService.insertBoard(board); // 저장메서드 호출
         logger.info(board.toString()); // selectKey로 정의한 BOARD_NUM 값 확인해 봅시다.
         return "redirect:list";
+    }
+
+    //detail?num=9 요청시 파라미터 num의 값을 int num에 저장합니다.
+    @GetMapping("/detail")
+    public ModelAndView detail(int num,
+                               ModelAndView mv,
+                               HttpServletRequest request,
+                               @RequestHeader(value="referer", required = false) String beforeURL, HttpSession session) {
+        /**
+         * 1. String beforeURL = request.getHeader("referer"); 의미로
+         *    어느 주소에서 detail로 이동했는지 header의 정보 중에서 "referer"를 통해 알 수 있습니다.
+         * 2. 수정 후 이곳으로 이동하는 경우 조회수는 증가하지 않도록 합니다.
+         * 3. board/list에서 제목을 클릭한 경우 조회수가 증가하도록 합니다.
+         *
+         */
+        String sessionReferer = (String) session.getAttribute("referer");
+        logger.info("referer: " + beforeURL);
+        if (sessionReferer != null && sessionReferer.equals("list")) {
+            if (beforeURL != null && beforeURL.endsWith("list")) {
+                boardService.setReadCountUpdate(num);
+            }
+            session.removeAttribute("referer");
+        }
+
+        Board board = boardService.getDetail(num);
+        //board=null; //error 페이지 이동 확인하고자 임의로 지정합니다.
+        if (board == null) {
+            logger.info("상세보기 실패");
+            mv.setViewName("error/error");
+            mv.addObject("url", request.getRequestURL());
+            mv.addObject("message", "상세보기 실패입니다.");
+        } else {
+            logger.info("상세보기 성공");
+            // int count = commentService.getListCount(num);
+            int count = 0;
+            mv.setViewName("board/boardView");
+            mv.addObject("count", count);
+            mv.addObject("boarddata", board);
+        }
+        return mv;
     }
 }

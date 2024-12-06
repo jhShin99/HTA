@@ -10,7 +10,8 @@
   -->
 
   <select id="getListCount" resultType="int">
-    SELECT COUNT(*) FROM board
+    SELECT COUNT(*)
+    FROM board
   </select>
 
   <!--
@@ -34,11 +35,53 @@
   <select id="getBoardList" resultType="board">
     SELECT *
     FROM (SELECT ROWNUM rnum, b.*
-    FROM (SELECT * FROM board
-    ORDER BY board_re_ref DESC,
-    board_re_seq ASC) b
-    WHERE ROWNUM &lt;= #{end}
-    )
-    WHERE rnum &gt;= #{start} AND rnum &lt;= #{end}
+          FROM (SELECT *
+                FROM board
+                ORDER BY board_re_ref DESC,
+                         board_re_seq ASC) b
+          WHERE ROWNUM &lt;= #{end})
+    WHERE rnum &gt;= #{start}
+      AND rnum &lt;= #{end}
   </select>
+  <!--
+    2. ① insert 전에(order="BEFORE")
+                 조회(SELECT NVL(MAX(BOARD_NUM),0)+1 FROM BOARD)합니다.
+       ② 조회한 값을 keyProperty="BOARD_NUM"에서 설정한 대로
+          "BOARD_NUM" 프로퍼티에 저장합니다.
+          (public void setBOARD_NUM(int BOARD_NUM))
+       ③ insert 문의 #{BOARD_NUM}는 지금 구한 값을 BoardBean에서 가져옵니다.
+          (public String getBOARD_NUM() {return BOARD_NUM;})
+   -->
+  <insert id="insertBoard">
+    <selectKey resultType="int" order="BEFORE"
+               keyProperty="BOARD_NUM">
+      SELECT NVL(MAX(BOARD_NUM), 0)+1 FROM board
+    </selectKey>
+    INSERT INTO board
+    (BOARD_NUM,
+    BOARD_NAME, BOARD_PASS, BOARD_SUBJECT,
+    BOARD_CONTENT, BOARD_FILE, BOARD_ORIGINAL,
+    BOARD_RE_REF,
+    BOARD_RE_LEV, BOARD_RE_SEQ, BOARD_READCOUNT,
+    BOARD_DATE)
+    VALUES
+    (#{BOARD_NUM},
+    #{BOARD_NAME}, #{BOARD_PASS}, #{BOARD_SUBJECT},
+    #{BOARD_CONTENT}, #{BOARD_FILE},
+    #{BOARD_ORIGINAL},
+    #{BOARD_NUM},
+    #{BOARD_RE_LEV}, #{BOARD_RE_SEQ}, #{BOARD_READCOUNT},
+    SYSDATE
+    )
+  </insert>
+
+  <select id="getDetail" resultType="Board">
+    SELECT * FROM board WHERE board_num = #{num}
+  </select>
+
+  <update id="setReadCountUpdate">
+    UPDATE board
+    SET board_readcount =  board_readcount + 1
+    WHERE board_num = #{num}
+  </update>
 </mapper>

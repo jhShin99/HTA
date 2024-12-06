@@ -94,31 +94,31 @@
           <td> <%-- 제목 --%>
             <div>
                 <%-- 답변글 제목앞에 여백 처리 부분 --%>
-              <c:if test="${b.board_re_lev > 0}"> <%-- 답글인 경우 --%>
-                <c:forEach var="a" begin="0" end="${b.board_re_lev*2}" step="1">
+              <c:if test="${b.BOARD_RE_LEV > 0}"> <%-- 답글인 경우 --%>
+                <c:forEach var="a" begin="0" end="${b.BOARD_RE_LEV*2}" step="1">
                   &nbsp;
                 </c:forEach>
                 <img src="${pageContext.request.contextPath}/image/line.gif">
               </c:if>
 
-              <a href="detail?num=${b.board_num}">
-                <c:if test="${b.board_subject.length() >= 20}">
-                  <c:out value="${b.board_subject.substring(0,20)}..."/>
+              <a href="detail?num=${b.BOARD_NUM}">
+                <c:if test="${b.BOARD_SUBJECT.length() >= 20}">
+                  <c:out value="${b.BOARD_SUBJECT.substring(0,20)}..."/>
                 </c:if>
-                <c:if test="${b.board_subject.length() < 20}">
-                  <c:out value="${b.board_subject}"/>
+                <c:if test="${b.BOARD_SUBJECT.length() < 20}">
+                  <c:out value="${b.BOARD_SUBJECT}"/>
                 </c:if>
-              </a>[${b.cnt}]
+              </a>
             </div>
           </td>
           <td>
-            <div>${b.board_name}</div>
+            <div>${b.BOARD_NAME}</div>
           </td>
           <td>
-            <div>${b.board_date}</div>
+            <div>${b.BOARD_DATE}</div>
           </td>
           <td>
-            <div>${b.board_readcount}</div>
+            <div>${b.BOARD_READCOUNT}</div>
           </td>
         </tr>
       </c:forEach>

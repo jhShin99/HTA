@@ -36,12 +36,18 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public String saveUploadedFile(MultipartFile file, String saveFolder) {
-        return "";
+    public void insertBoard(Board board) {
+        dao.insertBoard(board);
     }
 
     @Override
-    public void insertBoard(Board board) {
-
+    public void setReadCountUpdate(int number) {
+        dao.setReadCountUpdate(number);
     }
+
+    @Override
+    public Board getDetail(int number) {
+        return dao.getDetail(number);
+    }
+
 }
