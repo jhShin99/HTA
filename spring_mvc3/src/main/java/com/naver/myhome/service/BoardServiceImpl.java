@@ -4,6 +4,7 @@ import com.naver.myhome.domain.Board;
 import com.naver.myhome.mybatis.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,5 +33,15 @@ public class BoardServiceImpl implements BoardService {
         map.put("start", startrow);
         map.put("end", endrow);
         return dao.getBoardList(map);
+    }
+
+    @Override
+    public String saveUploadedFile(MultipartFile file, String saveFolder) {
+        return "";
+    }
+
+    @Override
+    public void insertBoard(Board board) {
+
     }
 }

@@ -3,14 +3,17 @@ package com.naver.myhome.controller;
 import com.naver.myhome.domain.Board;
 import com.naver.myhome.domain.PaginationResult;
 import com.naver.myhome.service.BoardService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -54,5 +57,31 @@ public class BoardController {
         mv.addObject("limit", limit);
 
         return mv;
+    }
+
+    // 글쓰기
+    @GetMapping(value = "/write") // board/write
+    public String boardWrite() {
+        return "board/boardWrite";
+    }
+
+    /**
+     * 스프링 컨테이너는 매개변수 Board 객체를 생성하고 Board 객체의 setter 메서드들을 호출하여 사용자 입력값을 설정합니다.
+     * 매개변수의 이름과 setter의 property 가 일치하면 됩니다.
+     */
+    @PostMapping("/add")
+    public String add(Board board, HttpServletRequest request) throws Exception {
+        String saveFolder = request.getSession().getServletContext().getRealPath("resources/updload");
+        MultipartFile uploadfile = board.getUploadfile();
+
+        if (!uploadfile.isEmpty()) {
+            String fileDBName = boardService.saveUploadedFile(uploadfile, saveFolder);
+            board.setBOARD_FILE(fileDBName); // 바뀐 파일명으로 저장
+            board.setBOARD_ORIGINAL(uploadfile.getOriginalFilename()); // 원래 파일명 저장
+        }
+
+        boardService.insertBoard(board); // 저장메서드 호출
+        logger.info(board.toString()); // selectKey로 정의한 BOARD_NUM 값 확인해 봅시다.
+        return "redirect:list";
     }
 }
