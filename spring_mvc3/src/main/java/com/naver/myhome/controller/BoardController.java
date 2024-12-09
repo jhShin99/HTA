@@ -220,7 +220,7 @@ public class BoardController {
     }
 
     @PostMapping("/replyAction")
-    public ModelAndView BOardReplyAction(Board board, ModelAndView mv, HttpServletRequest request, RedirectAttributes rattr) {
+    public ModelAndView BoardReplyAction(Board board, ModelAndView mv, HttpServletRequest request, RedirectAttributes rattr) {
         int result = boardService.boardReply(board);
         if (result == 0) {
             mv.setViewName("error/error");

@@ -88,4 +88,8 @@ public interface BoardService {
     boolean isBoardWriter(int num, String pass);
 
     int boardModify(Board modifyboard);
+
+    int boardReply(Board board);
+
+    int boardReplyUpdate(Board board);
 }

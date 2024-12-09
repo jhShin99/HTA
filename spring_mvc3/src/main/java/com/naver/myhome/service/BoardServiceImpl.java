@@ -4,6 +4,7 @@ import com.naver.myhome.domain.Board;
 import com.naver.myhome.mybatis.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
@@ -62,5 +63,19 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public int boardModify(Board modifyboard) {
         return dao.boardModify(modifyboard);
+    }
+
+    @Override
+    public int boardReplyUpdate(Board board) {
+        return dao.boardReplyUpdate(board);
+    }
+
+    @Override
+    @Transactional
+    public int boardReply(Board board) {
+        boardReplyUpdate(board);
+        board.setBOARD_RE_LEV(board.getBOARD_RE_LEV() + 1);
+        board.setBOARD_RE_SEQ(board.getBOARD_RE_SEQ() + 1);
+        return dao.boardReply(board);
     }
 }
