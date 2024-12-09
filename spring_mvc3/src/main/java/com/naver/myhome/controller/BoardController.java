@@ -142,7 +142,6 @@ public class BoardController {
             // 글 수정 폼 페이지로 이동하기 위해 경로를 설정합니다.
             mv.setViewName("board/boardModify");
         }
-
         return mv;
     }
 
@@ -205,5 +204,34 @@ public class BoardController {
             rattr.addAttribute("num", boarddata.getBOARD_NUM());
         }
         return url;
+    }
+
+    @GetMapping("/replyView")
+    public ModelAndView BoardReplyView(int num, ModelAndView mv, HttpServletRequest request) {
+        Board board = boardService.getDetail(num);
+        if (board == null) {
+            mv.setViewName("error/error");
+            mv.addObject("message", "게시판 답변글 가져오기 실패");
+        } else {
+            mv.addObject("boarddata", board);
+            mv.setViewName("board/boardReply");
+        }
+        return mv;
+    }
+
+    @PostMapping("/replyAction")
+    public ModelAndView BOardReplyAction(Board board, ModelAndView mv, HttpServletRequest request, RedirectAttributes rattr) {
+        int result = boardService.boardReply(board);
+        if (result == 0) {
+            mv.setViewName("error/error");
+            mv.addObject("url", request.getRequestURL());
+            mv.addObject("message", "게시판 답변 처리실패");
+        } else {
+            //mv.setViewName("redirect:list");
+            //mv.setViewName("redirect:detail?num="+board.getBOARD_NUM());
+            rattr.addAttribute("num", board.getBOARD_NUM());
+            mv.setViewName("redirect:detail");
+        }
+        return mv;
     }
 }

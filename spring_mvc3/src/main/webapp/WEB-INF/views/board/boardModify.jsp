@@ -28,6 +28,15 @@
           width: 20px;
       }
   </style>
+  <script>
+    $(function() {
+        let result = "${result}";
+
+        if (result === "passFail") {
+          alert("비밀번호가 일치하지 않습니다.");
+        }
+    })
+  </script>
 </head>
 <body>
 <%-- 게시판 수정 --%>
