@@ -44,15 +44,23 @@
         <td>
           <div>첨부파일</div>
         </td>
-
           <%-- 파일을 첨부한 경우 --%>
         <c:if test="${!empty boarddata.BOARD_FILE}">
+          <td><img src="/image/down.png" width="10px">
+            <form method="post" action="down" style="height: 0px">
+              <input type="hidden" value="${boarddata.BOARD_FILE}" name="filename">
+              <input type="hidden" value="${boarddata.BOARD_ORIGINAL}" name="original">
+              <input type="submit" value="${boarddata.BOARD_ORIGINAL}">
+            </form>
+          </td>
+        </c:if>
+        <%--<c:if test="${!empty boarddata.BOARD_FILE}">
           <td>
             <img src="${pageContext.request.contextPath}/image/down.png" width="10px">
             <a href="down?filename=${boarddata.BOARD_FILE}">${boarddata.BOARD_FILE}</a>
           </td>
         </c:if>
-
+--%>
           <%-- 파일을 첨부하지 않은 경우 --%>
         <c:if test="${empty boarddata.BOARD_FILE}">
           <td></td>
@@ -62,22 +70,24 @@
 
     <tr>
       <td colspan="2" class="center">
+        <button class="btn btn-primary">댓글</button>
+        <span id="count">${count}</span>
+
         <c:if test="${boarddata.BOARD_NAME == id || id == 'admin'}">
-          <a href="modify?num=${boarddata.BOARD_NUM}">
+          <a href="modifyView?num=${boarddata.BOARD_NUM}">
             <button class="btn btn-info">수정</button>
           </a>
           <%-- href의 주소를 #으로 설정합니다. --%>
           <a href="#">
-            <button class="btn btn-danger" data-toggle="modal"
-                    data-target="#myModal">삭제
-            </button>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#myModal">삭제</button>
           </a>
         </c:if>
-        <a href="list">
-          <button class="btn btn-warning">목록</button>
+
+        <a href="replyView?num=${boarddata.BOARD_NUM}">
+          <button class="btn btn-info">답변</button>
         </a>
-        <a href="reply?num=${boarddata.BOARD_NUM}">
-          <button class="btn btn-success">답변</button>
+        <a href="list">
+          <button class="btn btn-success">목록</button>
         </a>
       </td>
     </tr>

@@ -76,12 +76,26 @@
   </insert>
 
   <select id="getDetail" resultType="Board">
-    SELECT * FROM board WHERE board_num = #{num}
+    SELECT * FROM BOARD WHERE BOARD_NUM = #{num}
   </select>
 
   <update id="setReadCountUpdate">
     UPDATE board
-    SET board_readcount =  board_readcount + 1
-    WHERE board_num = #{num}
+    SET BOARD_READCOUNT =  BOARD_READCOUNT + 1
+    WHERE BOARD_NUM = #{num}
+  </update>
+
+  <select id="isBoardWriter" resultType="Board">
+    SELECT BOARD_PASS FROM board WHERE BOARD_NUM = #{num} AND BOARD_PASS = #{pass}
+  </select>
+
+  <update id="boardModify">
+    UPDATE board
+    SET
+          BOARD_SUBJECT = #{BOARD_SUBJECT},
+          BOARD_CONTENT = #{BOARD_CONTENT},
+          BOARD_FILE = #{BOARD_FILE},
+          BOARD_ORIGINAL = #{BOARD_ORIGINAL}
+    WHERE BOARD_NUM = #{BOARD_NUM}
   </update>
 </mapper>

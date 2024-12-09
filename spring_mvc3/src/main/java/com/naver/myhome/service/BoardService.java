@@ -84,4 +84,8 @@ public interface BoardService {
     void setReadCountUpdate(int number);
 
     Board getDetail(int number);
+
+    boolean isBoardWriter(int num, String pass);
+
+    int boardModify(Board modifyboard);
 }

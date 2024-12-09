@@ -50,4 +50,17 @@ public class BoardServiceImpl implements BoardService {
         return dao.getDetail(number);
     }
 
+    @Override
+    public boolean isBoardWriter(int num, String pass) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("num", num);
+        map.put("pass", pass);
+        Board result = dao.isBoardWriter(map);
+        return result != null; // result가 null이면 false, null이 아니면 true 리턴합니다.
+    }
+
+    @Override
+    public int boardModify(Board modifyboard) {
+        return dao.boardModify(modifyboard);
+    }
 }
