@@ -16,4 +16,8 @@
   <insert id="insert">
     INSERT INTO member VALUES (#{id}, #{password}, #{name}, #{age}, #{gender}, #{email})
   </insert>
+
+  <select id="getMember_info">
+    SELECT * FROM member WHERE id = #{id}
+  </select>
 </mapper>

@@ -24,4 +24,6 @@ public interface MemberMapper {
     public int getSearchListCount(Map<String, String> map);
 
     public List<Member> getSearchList(Map<String, Object> map);
+
+    Member getMember_info(String id);
 }

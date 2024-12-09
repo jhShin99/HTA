@@ -47,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member member_info(String id) {
-        return null;
+        return dao.getMember_info(id);
     }
 
     @Override

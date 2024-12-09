@@ -3,18 +3,22 @@ package com.naver.myhome.controller;
 import com.naver.myhome.domain.Board;
 import com.naver.myhome.domain.PaginationResult;
 import com.naver.myhome.service.BoardService;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
 import java.util.List;
 
 @Controller
@@ -266,5 +270,31 @@ public class BoardController {
             rattr.addFlashAttribute("result", "deleteSuccess");
             return "redirect:list";
         }
+    }
+
+    @ResponseBody
+    @PostMapping("/down")
+    public byte[] BoardFileDown(String filename,
+                                HttpServletRequest request,
+                                String original,
+                                HttpServletResponse response) throws Exception {
+        String savePath = "resources/upload";
+        // 서블릿의 실행 환경 정보를 담고 있는 객체를 리턴합니다.
+        ServletContext context = request.getSession().getServletContext();
+        String sDownloadPath = context.getRealPath(savePath);
+
+        String sFilePath = sDownloadPath + filename;
+
+        File file = new File(sFilePath);
+
+        //org.springframework.util.FileCopyUtils.copyToByteArray(File file) - File 객체를 읽어서 바이트 배열로 반환합니다.
+        byte[] bytes = FileCopyUtils.copyToByteArray(file);
+
+        String sEncoding = new String(original.getBytes("utf-8"), "ISO-8859-1");
+        //Content-Disposition: attachment: 브라우저는 해당 Content를 처리하지 않고, 다운로드하게 됩니다.
+        response.setHeader("Content-Disposition", "attachment;filename=" + sEncoding);
+
+        response.setContentLength(bytes.length);
+        return bytes;
     }
 }

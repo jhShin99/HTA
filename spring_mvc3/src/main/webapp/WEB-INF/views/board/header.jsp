@@ -51,7 +51,7 @@
         <a class="nav-link" href="${pageContext.request.contextPath}/member/logout">${id}님(로그아웃)</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/member/update">정보수정</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/member/update?id=${id}">정보수정</a>
       </li>
 
       <c:if test="${id == 'admin'}">
