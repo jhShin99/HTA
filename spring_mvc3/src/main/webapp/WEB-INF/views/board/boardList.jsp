@@ -41,6 +41,14 @@
       }
   </style>
   <title>MVC 게시판</title>
+  <script>
+    const result = "${result}";
+    if (result == 'deleteSuccess') {
+        alert("삭제 성공 입니다.");
+    } else if (result == 'updateSuccess') {
+        alert("회원 정보가 수정되었습니다.");
+    }
+  </script>
 </head>
 <body>
 <div class="container">

@@ -92,4 +92,6 @@ public interface BoardService {
     int boardReply(Board board);
 
     int boardReplyUpdate(Board board);
+
+    int boardDelete(int num);
 }

@@ -7,6 +7,12 @@
   <jsp:include page="header.jsp"/>
   <script src="${pageContext.request.contextPath}/js/view.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/view.css">
+  <script>
+    const result = "${result}";
+    if (result == 'passFail') {
+        alert("비밀번호가 일치하지 않습니다.");
+    }
+  </script>
 </head>
 <body>
 <input type="hidden" id="loginid" value="${id}" name="loginid"> <%-- view.js에서 사용하기 위해 추가합니다. --%>
@@ -107,7 +113,7 @@
               <label for="board_pass">비밀번호</label>
               <input type="password"
                      class="form-control" placeholder="Enter password"
-                     name="board_pass" id="board_pass">
+                     name="BOARD_PASS" id="board_pass">
             </div>
             <button type="submit" class="btn btn-primary">전송</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>

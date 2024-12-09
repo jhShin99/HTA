@@ -78,4 +78,14 @@ public class BoardServiceImpl implements BoardService {
         board.setBOARD_RE_SEQ(board.getBOARD_RE_SEQ() + 1);
         return dao.boardReply(board);
     }
+
+    @Override
+    public int boardDelete(int num) {
+        int result = 0;
+        Board board = dao.getDetail(num);
+        if (board != null) {
+            result = dao.boardDelete(board);
+        }
+        return result;
+    }
 }

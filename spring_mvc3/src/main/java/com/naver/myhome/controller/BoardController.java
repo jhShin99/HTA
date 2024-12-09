@@ -234,4 +234,37 @@ public class BoardController {
         }
         return mv;
     }
+
+    @PostMapping("/delete")
+    public String BoardDeleteAction(String BOARD_PASS, int num,
+                                    Model mv, RedirectAttributes rattr,
+                                    HttpServletRequest request) {
+
+        // 글 삭제 명령을 요청한 사용자가 글을 작성한 사용자인지 판단하기 위해
+        // 입력한 비밀번호와 저장된 비밀번호를 비교하여 일치하면 삭제합니다.
+        boolean usercheck = boardService.isBoardWriter(num, BOARD_PASS);
+
+        // 비밀번호 일치하지 않는 경우
+        if (usercheck == false) {
+            rattr.addFlashAttribute("result", "passFail");
+            rattr.addAttribute("num", num);
+            return "redirect:detail";
+        }
+
+        // 비밀번호 일치하는 경우 삭제 처리 합니다.
+        int result = boardService.boardDelete(num);
+
+        // 삭제 처리 실패한 경우
+        if (result == 0) {
+            logger.info("게시판 삭제 실패");
+            mv.addAttribute("url", request.getRequestURL());
+            mv.addAttribute("message", "삭제 실패");
+            return "error/error";
+        } else {
+            // 삭제 처리 성공한 경우 - 글 목록 보기 요청을 전송하는 부분입니다.
+            logger.info("게시판 삭제 성공");
+            rattr.addFlashAttribute("result", "deleteSuccess");
+            return "redirect:list";
+        }
+    }
 }
