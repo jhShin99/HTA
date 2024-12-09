@@ -30,7 +30,7 @@
     <b>Password</b>
     <input type="password" name="pass" placeholder="Enter password" required>
     <input type="checkbox" id="remember" name="remember" value="store">
-    <span>remember</span>
+    <label for="remember"><span>remember</span></label>
 
     <div class="clearfix">
       <button type="submit" class="submitbtn">로그인</button>
