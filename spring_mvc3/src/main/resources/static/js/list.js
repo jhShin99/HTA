@@ -12,7 +12,7 @@ function ajax(sdata) {
     $.ajax({
 
         data: sdata,
-        url: "list",
+        url: "list_ajax",
         dataType: "json",
         cache: false,
         success: function (data) {

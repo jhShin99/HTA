@@ -19,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -296,5 +298,31 @@ public class BoardController {
 
         response.setContentLength(bytes.length);
         return bytes;
+    }
+
+    /**
+     * @ResponseBody를 사용하면 각 메서드의 실행 결과는 JSON으로 변환되어 HTTP Response body에 실어 클라이언트로 전달됩니다.
+     */
+
+    @ResponseBody
+    @PostMapping(value = "/list_ajax")
+    public Map<String, Object> boardListAjax(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int limit
+    ) {
+        int listcount = boardService.getListCount(); // 총 리스트 수를 받아옴
+        List<Board> list = boardService.getBoardList(page, limit); // 리스트를 받아옴
+
+        PaginationResult result = new PaginationResult(page, limit, listcount);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("page", page);
+        map.put("maxpage", result.getMaxpage());
+        map.put("startpage", result.getStartpage());
+        map.put("endpage", result.getEndpage());
+        map.put("listcount", listcount);
+        map.put("boardlist", list);
+        map.put("limit", limit);
+        return map;
     }
 }

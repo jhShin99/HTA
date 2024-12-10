@@ -1,8 +1,10 @@
 package com.naver.myhome.controller;
 
 import com.naver.myhome.domain.Member;
+import com.naver.myhome.domain.PaginationResult;
 import com.naver.myhome.service.MemberService;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -13,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 /**
  * @Component를 이용해서 스프링 컨테이너가 해당 클래스 객체를 생성하도록 설정할 수 있지만
@@ -119,10 +123,93 @@ public class MemberController {
         return "redirect:login";
     }
 
+    //회원 정보 수정폼
     @GetMapping(value = "/update")
-    public String update(String id, Model model) {
-        Member memberinfo = memberService.member_info(id);
-        model.addAttribute("memberinfo", memberinfo);
-        return "member/updateForm";
+    public ModelAndView update(HttpSession session, ModelAndView mv) {
+        String id = (String) session.getAttribute("id");
+
+        if (id == null) {
+            mv.setViewName("redirect:login");
+            logger.info("id is null");
+        } else {
+            Member m = memberService.member_info(id);
+            mv.setViewName("member/memberUpdateForm");
+            mv.addObject("memberinfo", m);
+        }
+        return mv;
+    }
+
+    //수정처리
+    @PostMapping(value = "/updateProcess")
+    public String updateProcess(Member member, Model model,
+                                HttpServletRequest request,
+                                RedirectAttributes rattr) {
+
+        int result = memberService.update(member);
+        if (result == 1) {
+            rattr.addFlashAttribute("result", "updateSuccess");
+            return "redirect:/board/list";
+        } else {
+            model.addAttribute("url", request.getRequestURI());
+            model.addAttribute("message", "정보 수정 실패");
+            return "error/error";
+        }
+    }
+
+    /**
+     * 1. header.jsp에서 이동하는 경우
+     *    href="${pageContext.request.contextPath}/member/list"
+     * 2. member_list.jsp에서 이동하는 경우
+     *    <a href="list?page=2&search_field=-1&search_word=" class="page-link">2</a>
+     */
+    @GetMapping(value = "/list")
+    public ModelAndView memberList(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "3") int limit,
+            ModelAndView mv,
+            @RequestParam(value = "search_field", defaultValue = "-1") int index,
+            @RequestParam(defaultValue = "") String search_word
+    ) {
+        int listcount = memberService.getSearchListCount(index, search_word); // 총 리스트 수를 받아옴
+
+        List<Member> list = memberService.getSearchList(index, search_word, page, limit);
+
+        PaginationResult result = new PaginationResult(page, limit, listcount);
+
+        mv.setViewName("member/memberList");
+        mv.addObject("page", page);
+        mv.addObject("maxpage", result.getMaxpage());
+        mv.addObject("startpage", result.getStartpage());
+        mv.addObject("endpage", result.getEndpage());
+        mv.addObject("listcount", listcount);
+        mv.addObject("memberlist", list);
+        mv.addObject("search_field", index);
+        mv.addObject("search_word", search_word);
+        return mv;
+    }
+
+    // 회원의 개인 정보
+    @GetMapping(value = "/info")
+    public ModelAndView member_info(String id,
+                                    ModelAndView mv,
+                                    HttpServletRequest request) {
+        Member m = memberService.member_info(id);
+        // m=null; // 오류 확인하는 값
+        if (m != null) {
+            mv.setViewName("member/memberInfo");
+            mv.addObject("memberinfo", m);
+        } else {
+            mv.addObject("url", request.getRequestURL());
+            mv.addObject("message", "해당 정보가 없습니다.");
+            mv.setViewName("error/error");
+        }
+        return mv;
+    }
+
+    // 삭제
+    @GetMapping(value = "/delete")
+    public String member_delete(String id) {
+        memberService.delete(id);
+        return "redirect:list";
     }
 }
