@@ -59,6 +59,56 @@ $(function () {
                 }
             }
         }); // ajax end
+
     } // function end
+
+    // 글자수 50개 제한하는 이벤트
+    $("#content").on('keyup', function() {
+        $(".float-left").text($(this).val().length + "/50");
+    })
+
+    // 등록 또는 수정완료 버튼을 클릭한 경우
+    // 버튼의 라벨이 '등록'인 경우는 댓글을 추가하는 경우
+    // 버튼의 라벨이 '수정완료'인 경우는 댓글을 수정하는 경우
+    $("#write").click(function() {
+        const content = $("#content").val().trim();
+        if (!content) {
+            alert("내용을 입력하세요");
+            return false;
+        }
+        const buttonText = $("#write").text(); //버튼의 라벨로 add 할지 update 할지 결정
+
+        $(".float-left").text("총 50자까지 가능합니다.");
+
+        if (buttonText == "등록") { //댓글을 추가하는 경우
+            url = "../comment/add";
+            data = {
+                "content" : content,
+                "id" : $("#loginid").val(),
+                "board_num" : $("#board_num").val()
+            };
+        } else { // 댓글을 수정하는 경우
+            url = "../comment/update";
+            data = {
+                "num" : num,
+                "content" : content
+            };
+
+            $("#write").text("등록"); // 다시 등록으로 변경
+            $("#comment .cancel").remove(); // 취소 버튼 삭제
+        }
+
+        $.ajax({
+            type : "post",
+            url : url,
+            data : data,
+            success : function(result) {
+                $("#content").val('');
+                if (result == 1) {
+                    getList(page); //등록, 수정완료 후 해당 페이지 보여줍니다.
+                } //if
+            } //success
+        }) //ajax end
+    }) // $("#write") end
 })
 

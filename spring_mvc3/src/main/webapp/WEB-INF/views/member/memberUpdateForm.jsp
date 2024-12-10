@@ -51,7 +51,7 @@
     $("input[value='${memberinfo.gender}']").prop('checked', true);
 
     $(".cancelbtn").click(function () {
-        location.href = "../boards/list"
+        location.href = "../board/list"
     });
 
     //처음 화면 로드시 보여줄 이메일은 이미 체크 완료된 것이므로 기본 checkemail=true입니다.

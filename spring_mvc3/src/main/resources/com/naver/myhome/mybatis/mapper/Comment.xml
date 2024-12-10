@@ -7,4 +7,16 @@
     FROM comments
     WHERE board_num = #{board_num}
   </select>
+
+  <select id="getCommentList" resultType="Comment">
+    SELECT *
+    FROM (SELECT rownum rnum, num, id, content, reg_date, board_num
+          FROM (SELECT num, id, content, reg_date, board_num
+                FROM comments
+                WHERE board_num = #{board_num}
+                ORDER BY reg_date DESC
+                )
+          )
+    WHERE rnum BETWEEN #{start} AND #{end}
+  </select>
 </mapper>

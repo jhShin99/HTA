@@ -5,7 +5,9 @@ import com.naver.myhome.mybatis.mapper.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -25,7 +27,14 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> getCommentList(int board_num, int page) {
-        return List.of();
+        int startrow = 1;
+        int endrow = page * 3;
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("board_num", board_num);
+        map.put("start", startrow);
+        map.put("end", endrow);
+        return dao.getCommentList(map);
     }
 
     @Override
