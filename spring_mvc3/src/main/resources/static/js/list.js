@@ -13,6 +13,7 @@ function ajax(sdata) {
 
         data: sdata,
         url: "list_ajax",
+        type: "post",
         dataType: "json",
         cache: false,
         success: function (data) {
@@ -36,19 +37,19 @@ function updateBoardList(data) {
     let output = "<tbody>";
 
     $(data.boardlist).each(function (index, item) {
-        const blank = '&nbsp;&nbsp;'.repeat(item.board_re_lev * 2);
-        const img = item.board_re_lev > 0 ? "<img src='../image/line.gif'>" : "";
-        const subject = item.board_subject.length >= 20
-            ? item.board_subject.substr(0, 20) + "..." : item.board_subject;
+        const blank = '&nbsp;&nbsp;'.repeat(item.board_RE_LEV * 2);
+        const img = item.board_RE_LEV > 0 ? "<img src='../image/line.gif'>" : "";
+        const subject = item.board_SUBJECT.length >= 20
+            ? item.board_SUBJECT.substr(0, 20) + "..." : item.board_SUBJECT;
         const changeSubject = subject.replace(/</g, '&gt;').replace(/>/g, '&gt;');
 
         output += `
             <tr>
                 <td>${num--}</td>
-                <td><div>${blank}${img}<a href='detail?num=${item.board_num}'>${changeSubject}</a>[${item.cnt}]</div></td>
-                <td><div>${item.board_name}</div></td>
-                <td><div>${item.board_date}</div></td>
-                <td><div>${item.board_readcount}</div></td>
+                <td><div>${blank}${img}<a href='detail?num=${item.board_NUM}'>${changeSubject}</a></div></td>
+                <td><div>${item.board_NAME}</div></td>
+                <td><div>${item.board_DATE}</div></td>
+                <td><div>${item.board_READCOUNT}</div></td>
             </tr>
         `;
     });
