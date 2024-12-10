@@ -17,7 +17,7 @@
 </head>
 <body>
 <jsp:include page="../board/header.jsp"/>
-<form name="updateform" action="updateProcess" method="post" enctype="multipart/form-data">
+<form name="updateform" action="updateProcess" method="post">
   <h3>회원 정보 수정</h3>
   <hr>
   <b>아이디</b>
@@ -41,31 +41,6 @@
   <b>이메일 주소</b>
   <input type="text" name="email" value="${memberinfo.email}" placeholder="Enter email" required>
   <span id="email-message"></span>
-
-  <b>프로필 사진</b>
-  <label>
-    <img src="${pageContext.request.contextPath}/image/attach.png" width="10px">
-    <span id="filename">${memberinfo.memberfile}</span>
-    <span id="showImage">
-      <c:if test="${empty memberinfo.memberfile}">
-        <c:set var="src" value="image/profile.png"/>
-      </c:if>
-      <c:if test="${!empty memberinfo.memberfile}">
-        <c:set var="src" value='${"memberupload/"}${memberinfo.memberfile}'/>
-        <input type="hidden" name="check" value="${memberinfo.memberfile}">
-      </c:if>
-      <img src="${pageContext.request.contextPath}/${src}" width="20px" alt="profile">
-    </span>
-    <%--accept: 업로드할 파일 타입을 설정합니다.
-        <input type="file" accept="파일 확장자|audio/*|video/*|image/*">
-          (1) 파일 확장자는 .png, .jpg, .pdf, .hwp 처럼 (.)으로 시작되는 파일 확장자를 의미합니다.
-              예)accept=".png, .jpg, .pdf, .hwp"
-
-          (2) audio/* : 모든 타입의 오디오 파일
-          (3) image/* : 모든 타입의 이미지 파일
-    --%>
-    <input type="file" name="memberfile" accept="image/*">
-  </label>
   <div class="clearfix">
     <button type="submit" class="submitbtn">수정</button>
     <button type="reset" class="cancelbtn">취소</button>
