@@ -3,6 +3,7 @@ package com.naver.myhome.controller;
 import com.naver.myhome.domain.Board;
 import com.naver.myhome.domain.PaginationResult;
 import com.naver.myhome.service.BoardService;
+import com.naver.myhome.service.CommentService;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,13 +31,15 @@ public class BoardController {
     private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
     private BoardService boardService;
+    private CommentService commentService;
 
     // 클래스에 생성자가 하나만 존재하는 경우 Spring이 자동으로 의존성을 주입해 주므로 @Autowired를 붙일 필요가 없습니다.
     // Spring Boot 2.6 이상에서는 생성자가 하나뿐인 경우 @Autowired를 생략하는 것을 권장합니다.
 
     @Autowired
-    public BoardController(BoardService boardService) {
+    public BoardController(BoardService boardService, CommentService commentService) {
         this.boardService = boardService;
+        this.commentService = commentService;
     }
 
     @GetMapping(value = "/list")
@@ -76,7 +79,7 @@ public class BoardController {
      */
     @PostMapping("/add")
     public String add(Board board, HttpServletRequest request) throws Exception {
- ;
+        ;
         String saveFolder = request.getSession().getServletContext().getRealPath("resources/upload");
         MultipartFile uploadfile = board.getUploadfile();
         if (!uploadfile.isEmpty()) {
@@ -95,7 +98,7 @@ public class BoardController {
     public ModelAndView detail(int num,
                                ModelAndView mv,
                                HttpServletRequest request,
-                               @RequestHeader(value="referer", required = false) String beforeURL, HttpSession session) {
+                               @RequestHeader(value = "referer", required = false) String beforeURL, HttpSession session) {
         /**
          * 1. String beforeURL = request.getHeader("referer"); 의미로
          *    어느 주소에서 detail로 이동했는지 header의 정보 중에서 "referer"를 통해 알 수 있습니다.
@@ -121,8 +124,8 @@ public class BoardController {
             mv.addObject("message", "상세보기 실패입니다.");
         } else {
             logger.info("상세보기 성공");
-            // int count = commentService.getListCount(num);
-            int count = 0;
+            int count = commentService.getListCount(num);
+//            int count = 0;
             mv.setViewName("board/boardView");
             mv.addObject("count", count);
             mv.addObject("boarddata", board);

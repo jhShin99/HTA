@@ -124,34 +124,18 @@
   </div>
   <%-- modal 끝 --%>
 
-  <%-- 댓글 시작 --%>
-  <div class="comment-area">
-    <div class="comment-head">
-      <h3 class="comment-count">
-        댓글 <sup id="count"></sup> <%-- superscript(윗첨자) --%>
-      </h3>
-      <div class="comment-order">
-        <ul class="comment-order-list">
-
-        </ul>
-      </div>
-    </div>
-    <%-- comment-head end --%>
-    <ul class="comment-list">
-    </ul>
-    <div class="comment-write">
-      <div class="comment-write-area">
-        <b class="comment-write-area-name">${id}</b>
-        <span class="comment-write-area-count">0/200</span>
-        <textarea placeholder="댓글을 남겨보세요" rows="1"
-                  class="comment-write-area-text" maxlength="200"></textarea>
-      </div>
-      <div class="register-box">
-        <div class="button btn-cancel">취소</div> <%-- 댓글의 취소는 display:none, 등록만 보이도록 --%>
-        <div class="button btn-register">등록</div>
-      </div>
-    </div><%--comment-write end--%>
-  </div><%-- comment-area end--%>
-</div><%-- class="container" end --%>
+  <div id="comment">
+    <button class="btn btn-info float-left">총 50자까지 가능합니다.</button>
+    <button id="write" class="btn btn-info float-right">등록</button>
+    <textarea rows="3" class="form-control" id="content" maxlength="50"></textarea>
+    <table class="table">
+      <thead>
+      <tr><td>아이디</td><td>내용</td><td>날짜</td></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div id="message"></div>
+  </div>
+</div>
 </body>
 </html>
