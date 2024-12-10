@@ -36,6 +36,7 @@ public class MemberLoginProcessAction implements Action {
 
             // ID 기억하기를 체크한 경우
             if (IDStore != null && IDStore.equals("store")) {
+                cookie.setPath("/members");
                 cookie.setMaxAge(60 * 60 * 24); //쿠키의 유효시간을 24시간으로 설정합니다.
                 //클라이언트로 쿠키값을 전송합니다.
                 System.out.println("쿠키확인");
