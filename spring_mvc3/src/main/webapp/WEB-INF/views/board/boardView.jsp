@@ -108,7 +108,7 @@
                  주소를 보면 num을 파라미터로 넘기고 있습니다.
                  이 값을 가져와서 ${param.num}를 사용 또는 ${boarddata.board_num}
             --%>
-            <input type="hidden" name="num" value="${param.num}" id="comment_board_num">
+            <input type="hidden" name="num" value="${param.num}" id="board_num">
             <div class="form-group">
               <label for="board_pass">비밀번호</label>
               <input type="password"

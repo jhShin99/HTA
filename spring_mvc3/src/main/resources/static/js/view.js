@@ -110,5 +110,59 @@ $(function () {
             } //success
         }) //ajax end
     }) // $("#write") end
+
+    // 더보기를 클릭하면 page 내용이 추가로 보여집니다.
+    $("#message").click(function() {
+        getList(++page);
+    }); //click end
+
+    // pencil2.png를 클릭하는 경우(수정)
+    $("#comment").on("click", ".update", function() {
+        const before = $(this).parent().prev().text(); // 선택한 내용을 가져옵니다.
+        $("#content").focus().val(before); // textarea에 수정전 내용을 보여줍니다.
+
+        num = $(this).next().next().val(); // 수정할 댓글번호를 저장합니다.
+        $("#write").text("수정완료"); // 등록버튼의 라벨을 '수정완료'로 변경합니다.
+
+        //이미 취소 버튼이 만들어진 상태에서 또 수정을 클릭하면 취소가 계속 추가됩니다.
+        if (!$("#write").prev().is(".cancel")) {
+            $("#write").before('<button class="btn btn-danger float-right cancel">취소</button>');
+        }
+
+        $("#comment tbody tr").css('background', 'white');
+        $(this).parent().parent().css('background', 'lightgray'); // 수정할 행의 배경색을 변경합니다.
+
+        $(".float-left").text(before.length + "/50"); //선택한 행의 내용에 대한 길이 표시합니다.
+    })
+
+    $("#comment").on("click", ".cancel", function() {
+        $("#comment tbody tr").css('background', 'white');
+        $(this).remove();
+        $("#write").text("등록");
+        $("#content").val('');
+        $(".float-left").text("총 50자까지 가능합니다.");
+    })
+
+    //delete.png를 클릭하는 경우
+    $("#comment").on('click', '.remove', function() {
+        if (!confirm("정말 삭제하시겠습니까?")) {
+            return;
+        }
+
+        const deleteNum = $(this).next().val(); // 댓글번호
+        $.ajax({
+            type : "post",
+            url : "../comment/delete",
+            data : {
+                "num" : deleteNum
+            },
+            success : function(result) {
+                if (result == 1) {
+                    getList(page); // 삭제 후 해당 페이지의 내용을 보여줍니다.
+                }
+            }
+        }) // ajax end
+    })
+
 })
 

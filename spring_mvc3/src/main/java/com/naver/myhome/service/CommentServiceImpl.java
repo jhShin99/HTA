@@ -39,16 +39,16 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public int commentsInsert(Comment c) {
-        return 0;
-    }
-
-    @Override
-    public int commentsDelete(int num) {
-        return 0;
+        return dao.commentsInsert(c);
     }
 
     @Override
     public int commentsUpdate(Comment co) {
-        return 0;
+        return dao.commentsUpdate(co);
+    }
+
+    @Override
+    public int commentsDelete(int num) {
+        return dao.commentsDelete(num);
     }
 }
